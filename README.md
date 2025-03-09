@@ -5,12 +5,12 @@
 
 
 👤 **Juan Carlos**
-- GitHub: [@jalcausa](https://github.com/jalcausa)
-- Intra: [@jalcausa](https://profile.intra.42.fr/users/jalcausa)
+- ___GitHub: [@jalcausa](https://github.com/jalcausa)___
+- ___Intra: [@jalcausa](https://profile.intra.42.fr/users/jalcausa)___
 
 👤 **Yanel**
-- GitHub: [@yz19a](https://github.com/yz19a)
-- Intra: [@yaperalt](https://profile.intra.42.fr/users/yaperalt)
+- ___GitHub: [@yz19a](https://github.com/yz19a)___
+- ___Intra: [@yaperalt](https://profile.intra.42.fr/users/yaperalt)___
 
 
 ## 📑 Table of contents
