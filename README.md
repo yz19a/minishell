@@ -1,6 +1,19 @@
 <h1 align='center'> 💻🐚minishell🐚💻</h1>
 
-## Table of contents
+
+## 📜 Authors
+
+
+👤 **Juan Carlos**
+- GitHub: [@jalcausa](https://github.com/jalcausa)
+- Intra: [@jalcausa](https://profile.intra.42.fr/users/jalcausa)
+
+👤 **Yanel**
+- GitHub: [@yz19a](https://github.com/yz19a)
+- Intra: [@yaperalt](https://profile.intra.42.fr/users/yaperalt)
+
+
+## 📑 Table of contents
 
 - [Description](#description) 📄
 
@@ -13,20 +26,20 @@
 - [Resources](#resources)  📚
 
 
-## Description
+## 📄 Description
 
 
 
-## Requirements
+## ✅ Requirements
 
 
 
-## Usage
+## 🚀 Usage
 
 
 
-## Brief explanation and structure
+## 📂 Brief explanation and structure
 
 
 
-## Resources
+## 📚 Resources
