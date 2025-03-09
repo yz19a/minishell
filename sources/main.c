@@ -6,7 +6,7 @@
 /*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:16:12 by yaperalt          #+#    #+#             */
-/*   Updated: 2025/03/09 15:16:43 by yaperalt         ###   ########.fr       */
+/*   Updated: 2025/03/09 17:41:06 by yaperalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,4 +15,5 @@
 int	main(int argc, char **argv)
 {
 
+	return (0);
 }
