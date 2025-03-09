@@ -4,13 +4,13 @@
 ## 📜 Authors
 
 
-👤 **Juan Carlos**
-- ___GitHub: [@jalcausa](https://github.com/jalcausa)___
-- ___Intra: [@jalcausa](https://profile.intra.42.fr/users/jalcausa)___
+👤 ___Juan Carlos___
+___GitHub: [@jalcausa](https://github.com/jalcausa)___
+___Intra: [@jalcausa](https://profile.intra.42.fr/users/jalcausa)___
 
-👤 **Yanel**
-- ___GitHub: [@yz19a](https://github.com/yz19a)___
-- ___Intra: [@yaperalt](https://profile.intra.42.fr/users/yaperalt)___
+👤 ___Yanel___
+___GitHub: [@yz19a](https://github.com/yz19a)___
+___Intra: [@yaperalt](https://profile.intra.42.fr/users/yaperalt)___
 
 
 ## 📑 Table of contents
