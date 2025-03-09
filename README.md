@@ -4,11 +4,13 @@
 ## 📜 Authors
 
 
-👤 <span style="color: blue;">**Juan Carlos**</span>
+👤 ___Juan Carlos___
+
 ___GitHub: [@jalcausa](https://github.com/jalcausa)___
 ___Intra: [@jalcausa](https://profile.intra.42.fr/users/jalcausa)___
 
-👤 <span style="color: green;">**Yanel**</span>
+👤 ___Yanel___
+
 ___GitHub: [@yz19a](https://github.com/yz19a)___
 ___Intra: [@yaperalt](https://profile.intra.42.fr/users/yaperalt)___
 
