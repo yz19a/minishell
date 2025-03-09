@@ -1,7 +1,7 @@
 <h1 align='center'> 💻🐚minishell🐚💻</h1>
 
 
-## 📜 Authors
+## Authors 📜
 
 
 👤 ___Juan Carlos___
@@ -15,7 +15,7 @@ ___GitHub: [@yz19a](https://github.com/yz19a)___	|
 ___Intra: [@yaperalt](https://profile.intra.42.fr/users/yaperalt)___
 
 
-## 📑 Table of contents
+## Table of contents 📑
 
 - [Description](#description-) 📄
 
