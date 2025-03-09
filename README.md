@@ -1,4 +1,4 @@
-<h1 align='center'> 🐚💻minishell🐚💻</h1>
+<h1 align='center'> 💻🐚minishell🐚💻</h1>
 
 ## Table of contents
 
