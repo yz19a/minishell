@@ -3,10 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+         #
+#    By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/09 15:15:38 by yaperalt          #+#    #+#              #
-#    Updated: 2025/03/09 15:15:40 by yaperalt         ###   ########.fr        #
+#    Updated: 2025/03/23 15:44:35 by jalcausa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+NAME = minishell
+CFLAGS = -Wall -Wextra -Werror
+RM = rm -rf
+CC = gcc

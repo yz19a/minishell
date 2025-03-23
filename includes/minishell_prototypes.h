@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   minishell_prototypes.h                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:15:49 by yaperalt          #+#    #+#             */
-/*   Updated: 2025/03/09 15:42:07 by yaperalt         ###   ########.fr       */
+/*   Updated: 2025/03/23 15:44:34 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#ifndef MINISHELL_PROTOTYPES_H
+# define MINISHELL_PROTOTYPES_H
 
+# include "../libft/libft.h"
+# include "minishell_structures.h"
 // readline, rl_clear_history, rl_on_new_line, rl_replace_line, rl_redisplay, add_history
 # include <readline/readline.h>
 # include <readline/history.h>
@@ -38,6 +40,11 @@
 # include <curses.h>  // or <termcap.h>
 // ioctl
 # include <sys/ioctl.h>
+
+t_signals	g_signals;
+
+// handle_signals.c
+void handle_ctrl_c(int sig_num);
 
 
 #endif
