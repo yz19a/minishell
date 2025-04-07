@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:13:50 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/04/07 23:15:46 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/04/07 23:43:02 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char	*get_nextline(void)
 	char	*line;
 
 	current_dir = getcwd(NULL, 0);
-	aux = ft_strjoin("ConchaBB ", current_dir);
+	aux = ft_strjoin("minishell ", current_dir);
 	prompt = ft_strjoin(aux, " > ");
 	line = readline(prompt);
 	return (free(current_dir), free(aux), free(prompt), line);
