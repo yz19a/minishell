@@ -1,26 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/09 15:16:12 by yaperalt          #+#    #+#             */
-/*   Updated: 2025/04/07 23:15:54 by jalcausa         ###   ########.fr       */
+/*   Created: 2025/04/07 23:08:12 by jalcausa          #+#    #+#             */
+/*   Updated: 2025/04/07 23:08:22 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#ifndef LEXER_TYPES_H
+# define LEXER_TYPES_H
 
-t_global_sig	g_sig;
-
-int	main(int argc, char **argv, char **env)
+typedef enum e_lexer_state
 {
-	t_shell_data	*shell_data;
+	LEX_START,
+	LEX_SIMPLE_QUOTE,
+	LEX_DOUBLE_QUOTE,
+	LEX_WORD,
+	LEX_VAR,
+	LEX_VAR_DOUBLE_QUOTE
+}	t_lex_st;
 
-	(void)argc;
-	(void)argv;
-	shell_data = init_shell_data(env);
-	shell_loop(shell_data);
-	return (0);
-}
+typedef enum e_token_type
+{
+	TOK_WORD,
+	TOK_REDIR_IN,
+	TOK_REDIR_OUT,
+	TOK_REDIR_OUT_APPEND,
+	TOK_HDOC,
+	TOK_PIPE
+}	t_token_type;
+
+typedef struct s_token
+{
+	char			*value;
+	char			*var_name;
+	t_token_type	type;
+}	t_token;
+
+#endif
