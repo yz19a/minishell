@@ -6,7 +6,7 @@
 #    By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/09 15:15:38 by yaperalt          #+#    #+#              #
-#    Updated: 2025/04/08 17:26:38 by jalcausa         ###   ########.fr        #
+#    Updated: 2025/04/09 23:32:28 by jalcausa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,9 @@ RL_LINK  = -L $(RL_PATH)/lib
 HEADERS = -I $(LIBFT) -I ./includes $(RL_LIB)
 LIBS = $(LIBFT)/libft.a
 CC = cc
-SRCS	= 	src/shell_loop.c \
-			src/minishell.c
+SRCS	= 	src/shell_loop.c	\
+			src/minishell.c		\
+			src/utils/init.c
 
 OBJS	= $(SRCS:.c=.o)
 

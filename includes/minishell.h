@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:07:21 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/04/07 23:09:14 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/04/09 23:41:56 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # include <fcntl.h>
 # include <signal.h>
 # include <stdlib.h>
+
+// Estructuras:
 
 typedef struct s_command
 {
@@ -47,6 +49,10 @@ typedef struct s_global_sig
 	int		exit_status;
 	pid_t	pid;
 }	t_global_sig;
+
+// Prototipos de funciones:
+// Inicializar datos:
+t_shell_data	*init_shell_data(char **env);
 
 extern t_global_sig	g_sig;
 
