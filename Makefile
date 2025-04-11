@@ -6,19 +6,34 @@
 #    By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/09 15:15:38 by yaperalt          #+#    #+#              #
-#    Updated: 2025/04/09 23:32:28 by jalcausa         ###   ########.fr        #
+#    Updated: 2025/04/11 18:55:13 by jalcausa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= minishell
-CFLAGS	= -Wall -Wextra -g -Werror
-LIBFT	= libft
-RL_PATH  = /usr/local/opt/readline
-RL_LIB   = -I $(RL_PATH)/include
-RL_LINK  = -L $(RL_PATH)/lib
-HEADERS = -I $(LIBFT) -I ./includes $(RL_LIB)
-LIBS = $(LIBFT)/libft.a
 CC = cc
+CFLAGS	= -Wall -Wextra -g -Werror
+
+LIBFT	= libft
+LIBS = $(LIBFT)/libft.a
+
+# Detectar sistema operativo
+UNAME := $(shell uname)
+
+# Configuración para macOS
+ifeq ($(UNAME), Darwin)
+    RL_PATH  = /usr/local/opt/readline
+    RL_LIB   = -I $(RL_PATH)/include
+    RL_LINK  = -L $(RL_PATH)/lib
+else
+    # Configuración para Ubuntu (y otras distribuciones Linux)
+    RL_LIB   = -I /usr/include
+    RL_LINK  = -L /usr/lib/x86_64-linux-gnu
+endif
+
+HEADERS = -I $(LIBFT) -I ./includes $(RL_LIB)
+
+
 SRCS	= 	src/shell_loop.c	\
 			src/minishell.c		\
 			src/utils/init.c
