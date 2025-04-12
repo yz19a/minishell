@@ -1,5 +1,7 @@
 .DS_Store
 *.o
 *.a
+en.subject.pdf
+es.subject.pdf
 minishell
 .vscode/
