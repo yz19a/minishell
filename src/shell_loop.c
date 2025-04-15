@@ -6,11 +6,27 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:13:50 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/04/10 23:58:09 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/04/15 22:51:14 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+/*
+Muestra un prompt personalizado y obtiene el input del usuario usando readline
+*/
+
+static char	*get_nextline(void)
+{
+	char	*name;
+	char	*prompt;
+	char	*line;
+
+	name = "minishell ";
+	prompt = ft_strjoin(name, " > ");
+	line = readline(prompt);
+	return (free(prompt), line);
+}
 
 void	shell_loop(t_shell_data *data)
 {

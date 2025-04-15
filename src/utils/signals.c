@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 22:34:07 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/04/15 22:39:06 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/04/15 22:45:18 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 /*
 Muestra un nuevo prompt en una nueva línea usando funciones de Readline 
 */
-void	signal_reset_prompt(int signo)
+void	signal_reset_prompt(int signal)
 {
-	(void)signo;
+	(void)signal;
 	write(1, "\n", 1);
 	rl_on_new_line();
 	rl_replace_line("", 0);

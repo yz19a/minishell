@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:07:21 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/04/09 23:41:56 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/04/15 22:45:08 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,16 @@ typedef struct s_global_sig
 }	t_global_sig;
 
 // Prototipos de funciones:
+
 // Inicializar datos:
+
 t_shell_data	*init_shell_data(char **env);
+void			sig_init(void);
+
+// Manejo de señales
+void	set_signals_interactive(void);
+void	ignore_sigquit(void);
+void	signal_reset_prompt(int signal);
 
 extern t_global_sig	g_sig;
 
