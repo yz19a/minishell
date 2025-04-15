@@ -6,11 +6,16 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 23:20:04 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/04/09 23:54:16 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/04/15 22:41:14 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+void	sig_init(void)
+{
+	g_sig.pid = 0;
+}
 
 int	env_size(char **env)
 {
