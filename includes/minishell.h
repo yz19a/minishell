@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:07:21 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/04/15 22:45:08 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/04/21 14:10:55 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void			sig_init(void);
 void	set_signals_interactive(void);
 void	ignore_sigquit(void);
 void	signal_reset_prompt(int signal);
+void	print_newline(int signal);
+void	set_signals_noninteractive(void);
 
 extern t_global_sig	g_sig;
 

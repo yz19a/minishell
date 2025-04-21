@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:13:50 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/04/15 22:51:14 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/04/21 14:21:32 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,31 @@ Muestra un prompt personalizado y obtiene el input del usuario usando readline
 
 static char	*get_nextline(void)
 {
-	char	*name;
 	char	*prompt;
 	char	*line;
 
-	name = "minishell ";
-	prompt = ft_strjoin(name, " > ");
+	prompt = "minishell >";
 	line = readline(prompt);
-	return (free(prompt), line);
+	return (line);
+}
+
+static t_list	*analyze_line(char **line, t_shell_data *data)
+{
+	t_list	*tokens;
+	t_list	*commands;
+
+	if (!line || !*line)
+	{
+		ft_printf("exit\n");
+		exitshell(data, g_sig.exit_status);
+	}
+	expand_variables(line, data, 0);
+	tokens = lexer(*line, data);
+	if (!tokens)
+		return (0);
+	commands = parser(tokens, data);
+	lex_free_token_list(&tokens);
+	return (commands);
 }
 
 void	shell_loop(t_shell_data *data)
@@ -41,6 +58,7 @@ void	shell_loop(t_shell_data *data)
 		//proceso hijo ahora mismo
 		sig_init();
 		line = get_nextline();
+		// Función de la librería Readline para manejo del historial
 		add_history(line);
 		//Manejo de señales cuando la shell  NO está en modo interactivo
 		//(se ha recibido input del usuario)
@@ -48,7 +66,7 @@ void	shell_loop(t_shell_data *data)
 		// Extraer comandos del input del usuario
 		data->commands = analyze_line(&line, data);
 		free(line);
-		// Si no hya comandos (se pulsa enter o solo hay espacios
+		// Si no hay comandos (se pulsa enter o solo hay espacios
 		// volvemos al inicio del bucle)
 		if (!data->commands)
 			continue ;
