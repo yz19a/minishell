@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:07:21 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/04/21 17:56:43 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/05/05 00:17:34 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,13 @@ void	del_t_command(void *com);
 
 //exit.c
 void	exit_shell(t_shell_data *data, int exitcode);
+
+// expand_variables.c
+void	expand_variables(char **line, t_shell_data *data, int expand_quotes);
+
+// env
+char	*get_env_value(t_shell_data *data, char *key);
+char	**split_env(char *str);
 
 extern t_global_sig	g_sig;
 
