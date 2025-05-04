@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:13:50 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/04/21 18:05:32 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/05/04 23:55:46 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,9 @@ static t_list	*analyze_line(char **line, t_shell_data *data)
 		ft_printf("exit\n");
 		exit_shell(data, g_sig.exit_status);
 	}
-	/*
+	
 	expand_variables(line, data, 0);
+	/*
 	tokens = lexer(*line, data);
 	if (!tokens)
 		return (0);
