@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:13:50 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/05/04 23:55:46 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/05/06 11:21:31 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static char	*get_nextline(void)
 
 static t_list	*analyze_line(char **line, t_shell_data *data)
 {
-	//t_list	*tokens;
+	t_list	*tokens;
 	//t_list	*commands;
 
 	if (!line || !*line)
@@ -38,8 +38,8 @@ static t_list	*analyze_line(char **line, t_shell_data *data)
 	}
 	
 	expand_variables(line, data, 0);
-	/*
 	tokens = lexer(*line, data);
+	/*
 	if (!tokens)
 		return (0);
 	commands = parser(tokens, data);
