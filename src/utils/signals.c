@@ -6,11 +6,11 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 22:34:07 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/04/21 14:10:28 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/05/06 11:34:50 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 /*
 Muestra un nuevo prompt en una nueva línea usando funciones de Readline 
