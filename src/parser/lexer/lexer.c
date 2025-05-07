@@ -6,28 +6,32 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 11:30:39 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/05/07 09:03:37 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/05/07 09:11:21 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_lex_st	lex_next_state(t_lex_st state, char line)
+t_lex_st	lex_next_state(t_lex_st state, char cur_char)
 {
 	// Si estamos entre comillas simples o dobles y se cierran
 	// volvemos al estado LEX_WORD, si estamos en el estado inicial
 	// y el símbolo actual no es ninguno de los especiales pasamos a LEX_WORD
-	if ((state == LEX_SIMPLE_QUOTE && line == '\'')
-		|| (state == LEX_DOUBLE_QUOTE && line == '"')
-		|| (state == LEX_START && !ft_strchr("<' |\">", line)))
+	if ((state == LEX_SIMPLE_QUOTE && cur_char == '\'')
+		|| (state == LEX_DOUBLE_QUOTE && cur_char == '"')
+		|| (state == LEX_START && !ft_strchr("<' |\">", cur_char)))
 		return (LEX_WORD);
-	else if ((state == LEX_START && line == '\'')
-		|| (state == LEX_WORD && line == '\''))
+	// Si estamos en LEX_START o LEX_WORD y encontramos una comilla simple
+	// pasamos a LEX_SIMPLE_QUOTE para indicar que hemos visto una '
+	else if ((state == LEX_START && cur_char == '\'')
+		|| (state == LEX_WORD && cur_char == '\''))
 		return (LEX_SIMPLE_QUOTE);
-	else if ((state == LEX_START && line == '"')
-		|| (state == LEX_WORD && line == '"'))
+	// Si estamos en LEX_START o LEX_WORD y encontramos una comilla doble
+	// pasamos a LEX_SIMPLE_QUOTE para indicar que hemos visto una "
+	else if ((state == LEX_START && cur_char == '"')
+		|| (state == LEX_WORD && cur_char == '"'))
 		return (LEX_DOUBLE_QUOTE);
-	else if ((state == LEX_WORD && ft_strchr("< |>", line)))
+	else if ((state == LEX_WORD && ft_strchr("< |>", cur_char)))
 		return (LEX_START);
 	return (state);
 }
