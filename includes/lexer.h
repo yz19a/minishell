@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:08:12 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/04/07 23:08:22 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/05/07 08:53:34 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,8 @@ typedef struct s_token
 	char			*var_name;
 	t_token_type	type;
 }	t_token;
+
+// lexer.c
+t_list	*lexer(char *command, t_shell_data *data);
 
 #endif
