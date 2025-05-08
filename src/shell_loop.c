@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:13:50 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/05/06 11:35:16 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/05/08 23:33:39 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static t_list	*analyze_line(char **line, t_shell_data *data)
 	
 	expand_variables(line, data, 0);
 	tokens = lexer(*line, data);
+	(void) tokens;
 	/*
 	if (!tokens)
 		return (0);

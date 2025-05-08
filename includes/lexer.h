@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:08:12 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/05/07 08:53:34 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/05/08 23:29:52 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@ typedef enum e_lexer_state
 	LEX_START,
 	LEX_SIMPLE_QUOTE,
 	LEX_DOUBLE_QUOTE,
-	LEX_WORD,
-	LEX_VAR,
-	LEX_VAR_DOUBLE_QUOTE
+	LEX_WORD
 }	t_lex_st;
 
 typedef enum e_token_type
@@ -35,12 +33,8 @@ typedef enum e_token_type
 
 typedef struct s_token
 {
-	char			*value;
-	char			*var_name;
+	char			*content;
 	t_token_type	type;
 }	t_token;
-
-// lexer.c
-t_list	*lexer(char *command, t_shell_data *data);
 
 #endif
