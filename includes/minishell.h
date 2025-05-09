@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:07:21 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/05/08 23:32:11 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/05/09 17:19:44 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,10 @@ void	expand_variables(char **line, t_shell_data *data, int expand_quotes);
 // env
 char	*get_env_value(t_shell_data *data, char *key);
 char	**split_env(char *str);
+
+// errors.c
+char	*join_strs(char *str, char *add);
+int	print_error(char *command, char *detail, char *error_message, int err);
 
 // LEXER
 // lexer.c
