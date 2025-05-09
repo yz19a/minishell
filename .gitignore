@@ -5,3 +5,4 @@ en.subject.pdf
 es.subject.pdf
 minishell
 .vscode/
+*.dSYM

@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 22:34:07 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/04/15 22:45:18 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/04/21 14:10:28 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,27 @@ void	set_signals_interactive(void)
 	ft_memset(&act, 0, sizeof(act));
 	act.sa_handler = &signal_reset_prompt;
 	sigaction(SIGINT, &act, NULL);
+}
+
+
+void	print_newline(int signal)
+{
+	(void)signal;
+	rl_on_new_line();
+}
+
+/*
+Manejar señales para el shell en modo no interactivo (no se está esperando input):
+SIGINT(ctrl + c) y SIGQUIT(ctrl + \) deben ignorarse ya que solo deben afectar al
+proceso hijo que está en ejecución. Lo que hacemos es mostrar una nueva línea 
+únicamente
+*/
+void	set_signals_noninteractive(void)
+{
+	struct sigaction	act;
+
+	ft_memset(&act, 0, sizeof(act));
+	act.sa_handler = &print_newline;
+	sigaction(SIGINT, &act, NULL);
+	sigaction(SIGQUIT, &act, NULL);
 }

@@ -6,13 +6,13 @@
 #    By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/09 15:15:38 by yaperalt          #+#    #+#              #
-#    Updated: 2025/04/11 18:55:13 by jalcausa         ###   ########.fr        #
+#    Updated: 2025/05/05 00:21:30 by jalcausa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= minishell
 CC = cc
-CFLAGS	= -Wall -Wextra -g -Werror
+CFLAGS	= -Wall -Wextra -Werror
 
 LIBFT	= libft
 LIBS = $(LIBFT)/libft.a
@@ -26,7 +26,7 @@ ifeq ($(UNAME), Darwin)
     RL_LIB   = -I $(RL_PATH)/include
     RL_LINK  = -L $(RL_PATH)/lib
 else
-    # Configuración para Ubuntu (y otras distribuciones Linux)
+    # Configuración para Ubuntu
     RL_LIB   = -I /usr/include
     RL_LINK  = -L /usr/lib/x86_64-linux-gnu
 endif
@@ -34,9 +34,15 @@ endif
 HEADERS = -I $(LIBFT) -I ./includes $(RL_LIB)
 
 
-SRCS	= 	src/shell_loop.c	\
-			src/minishell.c		\
-			src/utils/init.c
+SRCS	= 	src/main.c						\
+			src/shell_loop.c				\
+			src/utils/init.c				\
+			src/utils/signals.c				\
+			src/utils/exit.c				\
+			src/utils/free.c				\
+			src/utils/expand_variables.c	\
+			src/env/get_env_value.c			\
+			src/env/split_env.c
 
 OBJS	= $(SRCS:.c=.o)
 
