@@ -6,10 +6,10 @@
 /*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:07:21 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/05/05 20:16:49 by yaperalt         ###   ########.fr       */
-/*   Updated: 2025/05/05 00:17:34 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/05/09 16:17:54 by yaperalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef MINISHELL_H
 #define MINISHELL_H
@@ -91,5 +91,31 @@ char	**split_env(char *str);
 extern t_global_sig g_sig;
 
 // Executer:
+/* execute.c */
+char *check_access(char *command, char **path);
+int execute(t_list *instr, t_shell_data *data);
+int execute_pipex(t_shell_data *data);
+/* execute_utils.c */
+int decode_error(int err);
+int is_builtin(char *command);
+int execute_builtins(t_command *command, t_shell_data *data);
+/* parse_env.c */
+char **get_path(char **env);
+void free_path(char **path);
+/* exec_cd.c */
+int built_in_cd(t_command *command, t_shell_data *data);
+/* exec_echo.c */
+int built_in_echo(t_command *command);
+/* exec_env.c */
+int built_in_env(t_command *command, t_shell_data *data);
+/* exec_exit.c */
+void exitshell(t_shell_data *data, int exitcode);
+int built_in_exit(t_command *command, t_shell_data *data);
+/* exec_export.c */
+int built_in_export(t_command *command, t_shell_data *data);
+/* exec_pwd.c */
+int exec_pwd(void);
+/* exec_unset.c */
+int built_in_unset(t_command *command, t_shell_data *data);
 
 #endif
