@@ -4,25 +4,10 @@
 A **basic Unix shell** implementation written in **C**, designed for educational purposes and functional command-line use. This project demonstrates key systems programming concepts such as lexical analysis, parsing, process creation, and environment management.
 
 ---
-## 📚 Table of Contents
-
-- [Overview](#-overview)
-- [Purpose and Scope](#-purpose-and-scope)
-- [Key Features](#-key-features)
-- [System Architecture](#-system-architecture)
-- [Core Data Structures](#-core-data-structures)
-- [Command Processing Pipeline](#-command-processing-pipeline)
-- [Component Relationships](#-component-relationships)
-- [Environment Management](#-environment-management)
-- [Signal Handling](#-signal-handling)
-- [Conclusion](#-conclusion)
-
 
 ## 📄 Overview
 
 This document introduces the Minishell project and outlines its **purpose**, **features**, **architecture**, and **core components**. It serves as a starting point for understanding how the shell is structured and operates.
-
-> For deeper insights, refer to dedicated wiki pages such as [Command Processing Pipeline](#command-processing-pipeline) and [Core Data Structures](#core-data-structures).
 
 ---
 
@@ -62,14 +47,15 @@ Minishell uses a **pipeline-based architecture**. Input flows through clearly de
 
 ```mermaid
 graph TD
-A[User Input] --> B[Shell Loop (loop_shell)]
-B --> C[Lexical Analysis (lexer)]
+A[User Input] --> B[Shell Loop]
+B --> C[Lexical Analysis]
 C --> D[Token List]
-D --> E[Parsing (parser)]
-E --> F[Command List (t_shell_data->commands)]
-F --> G{Is Built-in?}
+D --> E[Parsing]
+E --> F[Command List]
+F --> G{Is Built-in}
 G -->|Yes| H[Execute Built-ins]
-G -->|No| I[Create Pipes → Fork Processes → execve]
+G -->|No| I[Create Pipes and Fork]
+I --> J[Redirection and Execve]
 ```
 
 ### Key Components:
@@ -106,7 +92,12 @@ The shell processes each command via the following stages:
 
 ```mermaid
 graph LR
-A[Raw Input] --> B[Lexer] --> C[Token List] --> D[Parser] --> E[Command List] --> F[Executor] --> G[Command Output]
+A[Raw Input] --> B[Lexer]
+B --> C[Token List]
+C --> D[Parser]
+D --> E[Command List]
+E --> F[Executor]
+F --> G[Command Output]
 ```
 
 1. **Input Acquisition**
@@ -124,11 +115,17 @@ A[Raw Input] --> B[Lexer] --> C[Token List] --> D[Parser] --> E[Command List] --
 
 ```mermaid
 graph TD
-A[main()] --> B[init_shell_data]
-B --> C[loop_shell] --> D[readline()] --> E[lexer] --> F[parser] --> G[execute]
-G --> H{is_builtin}
-H -->|Yes| I[execute_builtins]
-H -->|No| J[execute_pipex] --> K[check_access] --> L[execve]
+A[main] --> B[Initialize Shell Data]
+B --> C[Shell Loop]
+C --> D[Read Line]
+D --> E[Lexical Analysis]
+E --> F[Parsing]
+F --> G[Execution]
+G --> H{Is Built-in}
+H -->|Yes| I[Execute Built-ins]
+H -->|No| J[Execute Pipeline]
+J --> K[Check Access]
+K --> L[Execute with Execve]
 G --> M[Signal Handling]
 ```
 
@@ -189,4 +186,3 @@ Minishell is a clean and modular shell implementation emphasizing **clarity** an
 - 🌐 **Dual Environment Handling**
 - 🛡 **Signal Safety**
 - 🔁 **Pipeline Support**
-
