@@ -1,46 +1,192 @@
-<h1 align='center'> 💻🐚minishell🐚💻</h1>
+
+# Minishell
+
+A **basic Unix shell** implementation written in **C**, designed for educational purposes and functional command-line use. This project demonstrates key systems programming concepts such as lexical analysis, parsing, process creation, and environment management.
+
+---
+## 📚 Table of Contents
+
+- [Overview](#-overview)
+- [Purpose and Scope](#-purpose-and-scope)
+- [Key Features](#-key-features)
+- [System Architecture](#-system-architecture)
+- [Core Data Structures](#-core-data-structures)
+- [Command Processing Pipeline](#-command-processing-pipeline)
+- [Component Relationships](#-component-relationships)
+- [Environment Management](#-environment-management)
+- [Signal Handling](#-signal-handling)
+- [Conclusion](#-conclusion)
 
 
-## Authors 📜
+## 📄 Overview
+
+This document introduces the Minishell project and outlines its **purpose**, **features**, **architecture**, and **core components**. It serves as a starting point for understanding how the shell is structured and operates.
+
+> For deeper insights, refer to dedicated wiki pages such as [Command Processing Pipeline](#command-processing-pipeline) and [Core Data Structures](#core-data-structures).
+
+---
+
+## 🎯 Purpose and Scope
+
+Minishell is a simplified Unix shell that:
+
+- Interprets and executes user commands
+- Demonstrates how real shells work under the hood
+- Uses a **modular architecture** to separate components
 
 
-👤 ___Juan Carlos___
+---
 
-___GitHub: [@jalcausa](https://github.com/jalcausa)___	|
-___Intra: [@jalcausa](https://profile.intra.42.fr/users/jalcausa)___
+## 🚀 Key Features
 
-👤 ___Yanel___
+| Feature               | Description |
+|----------------------|-------------|
+| Command Execution     | Run basic Unix commands with arguments |
+| Command Piping        | Pipe output between commands using `\|` |
+| Redirection           | Input (`<`), output (`>`), append (`>>`) support |
+| Heredoc               | Support for heredoc (`<<`) functionality |
+| Environment Variables | Manage and expand environment variables |
+| Built-in Commands     | `cd`, `echo`, `pwd`, `export`, `env`, `unset`, `exit` |
+| Signal Handling       | Handles `SIGINT` (Ctrl+C) and `SIGQUIT` (Ctrl+\) |
+| Command History       | Track and recall past commands |
 
-___GitHub: [@yz19a](https://github.com/yz19a)___	|
-___Intra: [@yaperalt](https://profile.intra.42.fr/users/yaperalt)___
+> 📁 **Sources**:
+> `readme.md` (lines 5–13)
+> `includes/minishell.h` (lines 142–162)
 
+---
 
-## Table of contents 📑
+## 🏗️ System Architecture
 
-- [Description](#description-) 📄
+Minishell uses a **pipeline-based architecture**. Input flows through clearly defined stages:
 
-- [Requirements](#requirements-) ✅
+```mermaid
+graph TD
+A[User Input] --> B[Shell Loop (loop_shell)]
+B --> C[Lexical Analysis (lexer)]
+C --> D[Token List]
+D --> E[Parsing (parser)]
+E --> F[Command List (t_shell_data->commands)]
+F --> G{Is Built-in?}
+G -->|Yes| H[Execute Built-ins]
+G -->|No| I[Create Pipes → Fork Processes → execve]
+```
 
-- [Usage](#usage-) 🚀
+### Key Components:
 
-- [Brief explanation and structure](#brief-explanation-and-structure-) 📂
+- **Shell Loop** – Reads user input and starts processing
+- **Lexer** – Breaks input into tokens
+- **Parser** – Builds command structures
+- **Executor** – Runs commands or pipelines
+- **Environment Manager** – Manages shell variables
+- **Signal Handler** – Controls signal behavior
 
-- [Resources](#resources-) 📚
+> 📁 **Sources**:
+> `src/minishell.c` (lines 17–26)
+> `includes/minishell.h` (lines 51–53, 54, 77–95, 98–120, 164–171)
 
+---
 
-## Description 📄
+## 🧱 Core Data Structures
 
-The **Minishell** project is a simple, custom-built shell that emulates the basic functionalities of a Unix shell. It allows users to **execute commands, handle piping, redirect input/output, and manage processes with built-in functionalities**. The goal of this project is to understand how shells interact with the operating system and the intricacies of process management, file handling, and system calls. By building Minishell, **developers can learn how to implement core features like command parsing, executing commands, and handling signals**. It is a great project to improve your understanding of C programming and low-level operating system interactions while creating a useful and functional command-line interface.
+| Structure         | Description |
+|------------------|-------------|
+| `t_shell_data`    | Maintains overall shell state |
+| `t_command`       | Represents a parsed command |
+| `t_token`         | Lexer token output |
+| `t_global_sig`    | Manages global signal and exit state |
 
-## Requirements ✅
+> 📁 **Source**: `includes/minishell.h` (lines 28–49)
 
+---
 
+## 🔁 Command Processing Pipeline
 
-## Usage 🚀
+The shell processes each command via the following stages:
 
+```mermaid
+graph LR
+A[Raw Input] --> B[Lexer] --> C[Token List] --> D[Parser] --> E[Command List] --> F[Executor] --> G[Command Output]
+```
 
-## Brief explanation and structure 📂
+1. **Input Acquisition**
+2. **Lexical Analysis**
+3. **Parsing**
+4. **Execution**
+5. **Output Handling**
 
+> 📁 **Sources**:
+> `includes/minishell.h` (lines 51–52, 77, 98)
 
+---
 
-## Resources 📚
+## 🔗 Component Relationships
+
+```mermaid
+graph TD
+A[main()] --> B[init_shell_data]
+B --> C[loop_shell] --> D[readline()] --> E[lexer] --> F[parser] --> G[execute]
+G --> H{is_builtin}
+H -->|Yes| I[execute_builtins]
+H -->|No| J[execute_pipex] --> K[check_access] --> L[execve]
+G --> M[Signal Handling]
+```
+
+- Shows flow from startup to execution
+- Illustrates relationships between major components
+
+> 📁 **Sources**:
+> `src/minishell.c` (lines 17–26)
+> `includes/minishell.h` (lines 51–62, 142–162, 164–171)
+
+---
+
+## 🌱 Environment Management
+
+Minishell uses two parallel environments:
+
+| Environment Type     | Structure Field             | Description |
+|----------------------|-----------------------------|-------------|
+| Regular              | `t_shell_data.env`          | Active variables |
+| Exported             | `t_shell_data.exportenv`    | Exported for child processes |
+
+### Functions
+
+- `get_env_value()`
+- `set_env_var()`, `remove_env_var()`
+- `set_export_env_var()`, `remove_exportenv_var()`
+- Built-ins: `env`, `export`, `unset`
+
+> 📁 **Sources**:
+> `includes/minishell.h` (lines 37–43, 62–72, 143–158)
+
+---
+
+## 🛑 Signal Handling
+
+Signal behavior adapts based on shell mode:
+
+| Mode             | SIGINT (`Ctrl+C`)     | SIGQUIT (`Ctrl+\`)       |
+|------------------|-----------------------|---------------------------|
+| Interactive      | `signal_reset_prompt` | *Ignored*                 |
+| Non-interactive  | `signal_print_newline`| `signal_print_newline`   |
+
+Functions:
+- `set_signals_interactive()`
+- `set_signals_noninteractive()`
+
+> 📁 **Source**: `includes/minishell.h` (lines 164–171)
+
+---
+
+## ✅ Conclusion
+
+Minishell is a clean and modular shell implementation emphasizing **clarity** and **educational value**.
+
+### Strengths:
+
+- 📚 **Component Separation**: Lexer, Parser, Executor
+- 🌐 **Dual Environment Handling**
+- 🛡 **Signal Safety**
+- 🔁 **Pipeline Support**
+
