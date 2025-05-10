@@ -5,6 +5,21 @@ A **basic Unix shell** implementation written in **C**, designed for educational
 
 ---
 
+## 📚 Table of Contents
+
+- [Overview](#-overview)
+- [Purpose and Scope](#-purpose-and-scope)
+- [Key Features](#-key-features)
+- [System Architecture](#-system-architecture)
+- [Core Data Structures](#-core-data-structures)
+- [Command Processing Pipeline](#-command-processing-pipeline)
+- [Component Relationships](#-component-relationships)
+- [Environment Management](#-environment-management)
+- [Signal Handling](#-signal-handling)
+- [Conclusion](#-conclusion)
+
+---
+
 ## 📄 Overview
 
 This document introduces the Minishell project and outlines its **purpose**, **features**, **architecture**, and **core components**. It serves as a starting point for understanding how the shell is structured and operates.
