@@ -8,9 +8,9 @@ A **basic Unix shell** implementation written in **C**, designed for educational
 ## 📚 Table of Contents
 
 - [Overview](#-overview)
+- [System Architecture](#-system-architecture)
 - [Purpose and Scope](#-purpose-and-scope)
 - [Key Features](#-key-features)
-- [System Architecture](#-system-architecture)
 - [Core Data Structures](#-core-data-structures)
 - [Command Processing Pipeline](#-command-processing-pipeline)
 - [Component Relationships](#-component-relationships)
@@ -23,36 +23,6 @@ A **basic Unix shell** implementation written in **C**, designed for educational
 ## 📄 Overview
 
 This document introduces the Minishell project and outlines its **purpose**, **features**, **architecture**, and **core components**. It serves as a starting point for understanding how the shell is structured and operates.
-
----
-
-## 🎯 Purpose and Scope
-
-Minishell is a simplified Unix shell that:
-
-- Interprets and executes user commands
-- Demonstrates how real shells work under the hood
-- Uses a **modular architecture** to separate components
-
-
----
-
-## 🚀 Key Features
-
-| Feature               | Description |
-|----------------------|-------------|
-| Command Execution     | Run basic Unix commands with arguments |
-| Command Piping        | Pipe output between commands using `\|` |
-| Redirection           | Input (`<`), output (`>`), append (`>>`) support |
-| Heredoc               | Support for heredoc (`<<`) functionality |
-| Environment Variables | Manage and expand environment variables |
-| Built-in Commands     | `cd`, `echo`, `pwd`, `export`, `env`, `unset`, `exit` |
-| Signal Handling       | Handles `SIGINT` (Ctrl+C) and `SIGQUIT` (Ctrl+\) |
-| Command History       | Track and recall past commands |
-
-> 📁 **Sources**:
-> `readme.md` (lines 5–13)
-> `includes/minishell.h` (lines 142–162)
 
 ---
 
@@ -85,6 +55,35 @@ I --> J[Redirection and Execve]
 > 📁 **Sources**:
 > `src/minishell.c` (lines 17–26)
 > `includes/minishell.h` (lines 51–53, 54, 77–95, 98–120, 164–171)
+
+---
+
+## 🎯 Purpose and Scope
+
+Minishell is a simplified Unix shell that:
+
+- Interprets and executes user commands
+- Demonstrates how real shells work under the hood
+- Uses a **modular architecture** to separate components
+
+---
+
+## 🚀 Key Features
+
+| Feature               | Description |
+|----------------------|-------------|
+| Command Execution     | Run basic Unix commands with arguments |
+| Command Piping        | Pipe output between commands using `\|` |
+| Redirection           | Input (`<`), output (`>`), append (`>>`) support |
+| Heredoc               | Support for heredoc (`<<`) functionality |
+| Environment Variables | Manage and expand environment variables |
+| Built-in Commands     | `cd`, `echo`, `pwd`, `export`, `env`, `unset`, `exit` |
+| Signal Handling       | Handles `SIGINT` (Ctrl+C) and `SIGQUIT` (Ctrl+\) |
+| Command History       | Track and recall past commands |
+
+> 📁 **Sources**:
+> `readme.md` (lines 5–13)
+> `includes/minishell.h` (lines 142–162)
 
 ---
 
