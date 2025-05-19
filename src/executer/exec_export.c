@@ -6,7 +6,7 @@
 /*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 16:36:47 by yaperalt          #+#    #+#             */
-/*   Updated: 2025/05/09 22:47:07 by yaperalt         ###   ########.fr       */
+/*   Updated: 2025/05/15 07:45:16 by yaperalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,17 @@ static void	free_args(char **arg)
 }
 
 // helper function to print evironment variables in export format
+static void	print_export_env(t_shell_data *data)
+{
 
+}
 
 
 // helper function check if variable name is valid
+static int	is_valid_name(char *arg)
+{
 
+}
 
 /**
  * If variable without =, it's stored only in EXPORT
