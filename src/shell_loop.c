@@ -6,11 +6,11 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:13:50 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/05/04 23:55:46 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/05/08 23:33:39 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "minishell.h"
 
 /*
 Muestra un prompt personalizado y obtiene el input del usuario usando readline
@@ -28,7 +28,7 @@ static char	*get_nextline(void)
 
 static t_list	*analyze_line(char **line, t_shell_data *data)
 {
-	//t_list	*tokens;
+	t_list	*tokens;
 	//t_list	*commands;
 
 	if (!line || !*line)
@@ -38,8 +38,9 @@ static t_list	*analyze_line(char **line, t_shell_data *data)
 	}
 	
 	expand_variables(line, data, 0);
-	/*
 	tokens = lexer(*line, data);
+	(void) tokens;
+	/*
 	if (!tokens)
 		return (0);
 	commands = parser(tokens, data);

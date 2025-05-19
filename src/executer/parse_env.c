@@ -3,11 +3,11 @@
 /*                                                        :::      ::::::::   */
 /*   parse_env.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 02:23:57 by yaperalt          #+#    #+#             */
-/*   Updated: 2025/04/14 02:24:15 by yaperalt         ###   ########.fr       */
+/*   Updated: 2025/05/06 11:35:45 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"

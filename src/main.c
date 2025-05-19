@@ -6,11 +6,11 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:16:12 by yaperalt          #+#    #+#             */
-/*   Updated: 2025/04/07 23:15:54 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/05/06 11:35:10 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "minishell.h"
 
 t_global_sig	g_sig;
 

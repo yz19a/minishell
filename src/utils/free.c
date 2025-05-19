@@ -6,11 +6,11 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 17:47:54 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/04/21 17:53:29 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/05/06 11:34:34 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 void	free_ptr(void *ptr)
 {
