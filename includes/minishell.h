@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:07:21 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/05/09 17:19:44 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/05/19 20:23:18 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,41 @@ void	lex_start_state(char **line, t_lex_st *state, t_list **res);
 t_list	*lex_create_token(t_token_type type, char *content);
 void	append_last_token(t_list **tokens, char **cmd);
 void	lex_free_token_list(t_list **lst);
+
+// PARSER
+// parser.c
+t_list	*parser(t_list *tokens, t_shell_data *data);
+t_pars_st	pars_next_state(t_pars_st st, t_token *tok);
+
+//states.c
+t_pars_err	pars_start_st(t_list *tokens, t_pars_st *state,
+	t_list **commands);
+t_pars_err	pars_command_st(t_list *tokens, t_pars_st *state,
+	t_list **commands);
+t_pars_err	pars_redirin_st(t_list *tokens, t_pars_st *state,
+	t_list **commands);
+t_pars_err	pars_redirout_st(t_list *tokens, t_pars_st *state,
+	t_list **cmds);
+t_pars_err	pars_rediroappe_st(t_list *tokens, t_pars_st *state,
+	t_list **cmds);
+
+// states2.c
+t_pars_err	pars_redheredoc_st(t_list *tokens, t_pars_st *state,t_list **cmds,
+	t_shell_data *data);
+t_pars_err	pars_invalid_st(t_list *tokens, t_pars_st *state);
+
+// actions.c
+t_pars_err	pars_set_stdin(t_list *commands, char *filename);
+t_pars_err	pars_set_stdout(t_list *commands, char *filename, int append);
+t_pars_err	pars_append_arg_to_command(t_list *commands, char *value);
+t_pars_err	pars_append_new_command(t_list **commands, char *value);
+
+// actions_heredoc.h
+t_pars_err	pars_create_heredoc(t_list	*cmds, char *value, t_shell_data *data);
+
+// utils.c
+void	pars_free_command_list(t_list **cmds);
+
 
 extern t_global_sig	g_sig;
 

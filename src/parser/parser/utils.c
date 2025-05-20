@@ -1,41 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer.h                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/07 23:08:12 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/05/19 20:30:04 by jalcausa         ###   ########.fr       */
+/*   Created: 2025/05/19 20:20:41 by jalcausa          #+#    #+#             */
+/*   Updated: 2025/05/19 20:20:53 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEXER_TYPES_H
-# define LEXER_TYPES_H
+#include "minishell.h"
 
-typedef enum e_lexer_state
+static void	free_node(void *node)
 {
-	LEX_START,
-	LEX_SIMPLE_QUOTE,
-	LEX_DOUBLE_QUOTE,
-	LEX_WORD
-}	t_lex_st;
+	t_command	*command;
+	int			i;
 
-typedef enum e_token_type
+	if (!node)
+		return ;
+	command = (t_command *) node;
+	i = 0;
+	while (command->argv[i])
+	{
+		free(command->argv[i]);
+		i++;
+	}
+	free(command->argv);
+	free(command);
+}
+
+void	pars_free_command_list(t_list **cmds)
 {
-	TOK_WORD,
-	TOK_REDIR_IN,
-	TOK_REDIR_OUT,
-	TOK_REDIR_OUT_APPEND,
-	TOK_HDOC,
-	TOK_PIPE
-}	t_token_type;
-
-typedef struct s_token
-{
-	char			*value;
-	char			*var_name;
-	t_token_type	type;
-}	t_token;
-
-#endif
+	if (!cmds)
+		return ;
+	ft_lstclear(cmds, &free_node);
+}
