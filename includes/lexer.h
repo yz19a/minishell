@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:08:12 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/05/25 19:39:48 by yaperalt         ###   ########.fr       */
+/*   Updated: 2025/05/19 20:30:04 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEXER_H
-# define LEXER_H
+#ifndef LEXER_TYPES_H
+# define LEXER_TYPES_H
 
 typedef enum e_lexer_state
 {
