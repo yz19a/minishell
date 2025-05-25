@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pwd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/19 16:36:51 by yaperalt          #+#    #+#             */
-/*   Updated: 2025/04/22 22:19:11 by yaperalt         ###   ########.fr       */
+/*   Created: 2025/04/14 02:23:57 by yaperalt          #+#    #+#             */
+/*   Updated: 2025/05/06 11:35:45 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 /**
  * Implements the pwd command to print working directory.

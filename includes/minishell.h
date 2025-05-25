@@ -89,6 +89,26 @@ char	*get_env_value(t_shell_data *data, char *key);
 char	**split_env(char *str);
 
 extern t_global_sig g_sig;
+// errors.c
+char	*join_strs(char *str, char *add);
+int	print_error(char *command, char *detail, char *error_message, int err);
+
+// LEXER
+// lexer.c
+t_list	*lexer(char *command, t_shell_data *data);
+t_lex_st	lex_next_state(t_lex_st state, char cur_char);
+
+// states.c
+void	lex_quote_states(char **line, t_lex_st *st, t_list **res, char quote);
+void	lex_word_state(char **line, t_lex_st *st, t_list **res);
+void	lex_start_state(char **line, t_lex_st *state, t_list **res);
+
+// utils.c
+t_list	*lex_create_token(t_token_type type, char *content);
+void	append_last_token(t_list **tokens, char **cmd);
+void	lex_free_token_list(t_list **lst);
+
+extern t_global_sig	g_sig;
 
 // Executer:
 /* execute.c */

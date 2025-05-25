@@ -6,7 +6,7 @@
 #    By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/09 15:15:38 by yaperalt          #+#    #+#              #
-#    Updated: 2025/05/05 00:21:30 by jalcausa         ###   ########.fr        #
+#    Updated: 2025/05/09 17:17:57 by jalcausa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,8 +41,12 @@ SRCS	= 	src/main.c						\
 			src/utils/exit.c				\
 			src/utils/free.c				\
 			src/utils/expand_variables.c	\
+			src/utils/errors.c				\
 			src/env/get_env_value.c			\
-			src/env/split_env.c
+			src/env/split_env.c				\
+			src/parser/lexer/lexer.c		\
+			src/parser/lexer/states.c		\
+			src/parser/lexer/utils.c
 
 OBJS	= $(SRCS:.c=.o)
 

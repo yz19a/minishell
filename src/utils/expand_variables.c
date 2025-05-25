@@ -6,11 +6,11 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 23:56:49 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/05/05 00:15:13 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/05/06 11:34:27 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 static char	*get_var(t_shell_data *data, char *line, int *var_len)
 {
