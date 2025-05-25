@@ -6,7 +6,7 @@
 #    By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/09 15:15:38 by yaperalt          #+#    #+#              #
-#    Updated: 2025/05/19 20:22:30 by jalcausa         ###   ########.fr        #
+#    Updated: 2025/05/25 15:14:49 by jalcausa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,16 @@ SRCS	= 	src/main.c							\
 			src/parser/parser/states2.c			\
 			src/parser/parser/actions.c			\
 			src/parser/parser/actions_heredoc.c	\
-			src/parser/parser/utils.c
+			src/parser/parser/utils.c			\
+			src/executer/executer.c				\
+			src/executer/exec_cd.c				\
+			src/executer/exec_echo.c			\
+			src/executer/exec_env.c				\
+			src/executer/exec_exit.c			\
+			src/executer/exec_export.c			\
+			src/executer/exec_pwd.c				\
+			src/executer/exec_unset.c			\
+			src/executer/executer_utils.c		
 
 OBJS	= $(SRCS:.c=.o)
 

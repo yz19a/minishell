@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:13:50 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/05/19 19:00:44 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/05/25 15:11:22 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ void	shell_loop(t_shell_data *data)
 		if (!data->commands)
 			continue ;
 		// Si solo hay un comando lo ejecutamos
-		/*
 		if (ft_lstsize(data->commands) == 1)
 			g_sig.exit_status = execute(data->commands, data);
 		// Si hay más de un comando necesitamos pipes
@@ -81,6 +80,5 @@ void	shell_loop(t_shell_data *data)
 			g_sig.exit_status = execute_pipex(data);
 		// Liberar la estructura de comandos
 		pars_free_command_list(&(data->commands));
-		*/
 	}
 }

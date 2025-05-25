@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:07:21 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/05/19 20:23:18 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/05/25 15:25:29 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 #include <fcntl.h>
 #include <signal.h>
 #include <stdlib.h>
+#include <sys/wait.h>
 
 // Estructuras:
 
@@ -172,5 +173,8 @@ int built_in_export(t_command *command, t_shell_data *data);
 int exec_pwd(void);
 /* exec_unset.c */
 int built_in_unset(t_command *command, t_shell_data *data);
+/* utils/pipes.c */
+void	close_pipes(t_shell_data *data, t_list *instr);
+
 
 #endif
