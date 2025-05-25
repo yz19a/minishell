@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 16:36:47 by yaperalt          #+#    #+#             */
-/*   Updated: 2025/05/25 15:16:13 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/05/25 15:47:28 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	free_args(char **arg)
 // helper function to print evironment variables in export format
 static void	print_export_env(t_shell_data *data)
 {
-	char	**export_env_eux;
+	char	**export_env_aux;
 	int		i;
 	char	**iterator;
 
@@ -69,7 +69,7 @@ static int	is_valid_name(char *arg)
 	is_valid = 1;
 	invalid_chars = ":-!/?+^.,";
 	if (arg[0] == '=')
-		return (NULL);
+		return (0);
 	splitted = ft_split(arg, '=');
 	 while (((i < (int)ft_strlen(splitted[0]))) && (is_valid == 1))
     {
@@ -104,10 +104,10 @@ static int	set_variables(t_command *command, t_shell_data *data)
                 set_export_env_var(data, args[i], "");
             else
             {
-                splited = ft_split(args[i], '=');
-                set_env_var(data, splited[0], splited[1]);
-                set_export_env_var(data, splited[0], splited[1]);
-                free_args(splited);
+                splitted = ft_split(args[i], '=');
+                set_env_var(data, splitted[0], splitted[1]);
+                set_export_env_var(data, splitted[0], splitted[1]);
+                free_args(splitted);
             }
         }
         else

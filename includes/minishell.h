@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:07:21 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/05/25 15:34:16 by yaperalt         ###   ########.fr       */
+/*   Updated: 2025/05/25 15:44:00 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,9 @@ typedef struct s_global_sig
 // init.c
 t_shell_data	*init_shell_data(char **env);
 void			sig_init(void);
+int				env_size(char **env);
+int				init_env(t_shell_data *aux, char **env);
+int				init_export_env(t_shell_data *aux, char **env);
 
 // signals.c
 void	set_signals_interactive(void);
@@ -175,6 +178,7 @@ int		built_in_unset(t_command *command, t_shell_data *data);
 // utils.c (general)
 void	print_prompt(void);
 void	clear_input_buffer(void);
+void	close_pipes(t_shell_data *data, t_list *instr);
 
 // global signal
 extern t_global_sig	g_sig;
