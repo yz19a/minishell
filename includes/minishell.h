@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:07:21 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/05/25 16:33:37 by yaperalt         ###   ########.fr       */
+/*   Updated: 2025/05/25 17:03:35 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,6 @@ typedef struct s_shell_data
     char	**exportenv;
 }	t_shell_data;
 
-typedef struct s_global_sig
-{
-    int		exit_status;
-    pid_t	pid;
-}	t_global_sig;
-
 /* Function Prototypes */
 
 /* main.c */
@@ -62,7 +56,6 @@ void			shell_loop(t_shell_data *data);
 
 /* utils/init.c */
 t_shell_data	*init_shell_data(char **env);
-void			sig_init(void);
 int				env_size(char **env);
 int				init_env(t_shell_data *aux, char **env);
 int				init_export_env(t_shell_data *aux, char **env);
@@ -194,6 +187,6 @@ void			print_prompt(void);
 void			clear_input_buffer(void);
 
 /* Global signal */
-extern t_global_sig	g_sig;
+extern int	exit_status;
 
 #endif

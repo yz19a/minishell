@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 02:24:26 by yaperalt          #+#    #+#             */
-/*   Updated: 2025/05/25 15:15:16 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/05/25 17:04:55 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,22 +69,23 @@ static int execaux(t_command *instr, t_shell_data *data)
 static int execute_generic(t_command *instr, t_shell_data *data)
 {
     int     result_code;
+	pid_t	pid;
 
     // Fork to execute command
-    g_sig.pid = fork();
+    pid = fork();
     result_code = 0;
 
-    if (g_sig.pid < 0)
-        return (g_sig.pid);
+    if (pid < 0)
+        return (pid);
 
-    if (g_sig.pid == 0)
+    if (pid == 0)
     {
         // Child process executes command
         result_code = execaux(instr, data);
         exit(result_code);
     }
     // Parent waits for child to finish
-    waitpid(g_sig.pid, &result_code, 0);
+    waitpid(pid, &result_code, 0);
     result_code = decode_error(result_code);
     // Print error if command not found
     if (result_code == 127)

@@ -6,13 +6,13 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:16:12 by yaperalt          #+#    #+#             */
-/*   Updated: 2025/05/06 11:35:10 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/05/25 16:57:48 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_global_sig	g_sig;
+int	exit_status;
 
 int	main(int argc, char **argv, char **env)
 {

@@ -6,16 +6,12 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 23:20:04 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/05/06 11:34:41 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/05/25 16:58:58 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	sig_init(void)
-{
-	g_sig.pid = 0;
-}
 
 int	env_size(char **env)
 {
@@ -103,7 +99,7 @@ t_shell_data	*init_shell_data(char **env)
 {
 	t_shell_data	*aux;
 	
-	g_sig.exit_status = 0;
+	exit_status = 0;
 	aux = (t_shell_data *)ft_calloc(1, sizeof(t_shell_data));
 	init_env(aux, env);
 	aux->dup_stdin = dup(STDIN_FILENO);
