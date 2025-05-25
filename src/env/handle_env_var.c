@@ -6,11 +6,11 @@
 /*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 14:56:04 by yaperalt          #+#    #+#             */
-/*   Updated: 2025/05/21 15:10:41 by yaperalt         ###   ########.fr       */
+/*   Updated: 2025/05/25 16:38:20 by yaperalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 // conseguir el indice de una environment variable dentro de 'char **env',
 // siendo var la variable de entorno a encontrar
@@ -63,26 +63,4 @@ int	remove_env_var(t_shell_data *data, int idx)
 	if (!data->env)
 		return (0);
 	return (1);
-}
-
-
-// reallocate data->env para que tenga un nuevo tamaño, dado como parametro
-// size
-static char	**realloc_env_vars(t_shell_data *data, int size)
-{
-	char	**new_env;
-	int		i;
-
-	new_env = ft_calloc(size + 1, sizeof(new_env));
-	if (!new_env)
-		return (0);
-	i = 0;
-	while (data->env[i] && i < size)
-	{
-		new_env[i] = ft_strdup(data->env[i]);
-		free_ptr(data->env[i]);
-		i++;
-	}
-	free(data->env);
-	return (new_env);
 }

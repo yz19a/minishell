@@ -6,11 +6,11 @@
 /*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 02:23:57 by yaperalt          #+#    #+#             */
-/*   Updated: 2025/05/09 15:53:14 by yaperalt         ###   ########.fr       */
+/*   Updated: 2025/05/25 16:39:28 by yaperalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 /**
  * Contains functions to parse and manipulate environment variables.
@@ -24,7 +24,7 @@ void	free_path(char **path)
 	i = 0;
 	while (path[i])
 	{
-		free(path[i])
+		free(path[i]);
 		i++;
 	}
 	free(path);

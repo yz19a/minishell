@@ -6,7 +6,7 @@
 /*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:07:21 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/05/25 16:20:02 by yaperalt         ###   ########.fr       */
+/*   Updated: 2025/05/25 16:33:37 by yaperalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,24 +103,18 @@ char			**split_env(char *str);
 
 /* env/set_env_var.c */
 int				set_env_var(t_shell_data *data, char *name, char *value);
+int				set_export_env_var(t_shell_data *data, char *key, char *value);
+int				remove_exportenv_var(t_shell_data *data, int idx);
+char	 		**realloc_export_env_vars(t_shell_data *data, int size);
 
 /* env/handle_env_var.c */
-int				unset_env_var(t_shell_data *data, char *name);
-int				add_env_var(t_shell_data *data, char *name, char *value);
 int				get_env_var_index(char **env, char *var);
 int				remove_env_var(t_shell_data *data, int idx);
+char			**realloc_env_vars(t_shell_data *data, int size);
 
 /* env/parse_env.c */
 char			**get_path(char **env);
 void			free_path(char **path);
-
-/* env/print_env.c */
-void			print_env(char **env);
-
-/* env/export_env_utils.c */
-char			**realloc_export_env_vars(t_shell_data *data, int size);
-int				set_export_env_var(t_shell_data *data, char *key, char *value);
-int				remove_exportenv_var(t_shell_data *data, int idx);
 
 /* executer/executer.c */
 char			*check_access(char *command, char **path);

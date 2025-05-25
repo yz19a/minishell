@@ -6,11 +6,32 @@
 /*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 10:27:06 by yaperalt          #+#    #+#             */
-/*   Updated: 2025/05/25 16:11:08 by yaperalt         ###   ########.fr       */
+/*   Updated: 2025/05/25 16:38:55 by yaperalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
+
+// reallocate data->env para que tenga un nuevo tamaño, dado como parametro
+// size
+char	**realloc_env_vars(t_shell_data *data, int size)
+{
+	char	**new_env;
+	int		i;
+
+	new_env = ft_calloc(size + 1, sizeof(new_env));
+	if (!new_env)
+		return (0);
+	i = 0;
+	while (data->env[i] && i < size)
+	{
+		new_env[i] = ft_strdup(data->env[i]);
+		free_ptr(data->env[i]);
+		i++;
+	}
+	free(data->env);
+	return (new_env);
+}
 
 /**
  * Add the variable to the env
@@ -33,12 +54,12 @@ int	set_env_var(t_shell_data *data, char *name, char *value)
 	if (idx != -1 && data->env[idx])
 	{
 		free_ptr(data->env[idx]);
-		data->env[idx] = ft_strjoin(key, aux);
+		data->env[idx] = ft_strjoin(name, aux);
 	}
 	else
 	{
 		idx = env_size(data->env);
-		data->env = realloc_env_vars(data, idx + 1);
+		data->env = realloc_env_vars(data, (idx + 1));
 		if (!data->env)
 			return (12);
 		data->env[idx] = ft_strjoin(name, value);
@@ -47,7 +68,7 @@ int	set_env_var(t_shell_data *data, char *name, char *value)
 	return (0);
 }
 
-static char	**realloc_export_env_vars(t_shell_data *data, int size)
+char	**realloc_export_env_vars(t_shell_data *data, int size)
 {
 	char	**new_env;
 	int		i;
@@ -111,7 +132,7 @@ int	remove_exportenv_var(t_shell_data *data, int idx)
 		count++;
 		i++;
 	}
-	data->exportenv = realloc_expenv_vars(data, count);
+	data->exportenv = realloc_env_vars(data, count);
 	if (!data->exportenv)
 		return (0);
 	return (1);
