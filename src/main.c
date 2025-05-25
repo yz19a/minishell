@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:16:12 by yaperalt          #+#    #+#             */
-/*   Updated: 2025/05/25 16:57:48 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/05/25 19:11:55 by yaperalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	exit_status;
+int	g_exit_status;
 
 int	main(int argc, char **argv, char **env)
 {
