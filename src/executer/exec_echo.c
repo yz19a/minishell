@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_echo.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 16:36:36 by yaperalt          #+#    #+#             */
-/*   Updated: 2025/05/25 15:16:00 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/05/25 18:32:50 by yaperalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,13 @@
  * Implements the echo command to print text.
  */
 
-// Helper function to print all arguments
+/**
+ * Prints the contents of the provided array of strings, which is typically
+ * used to display command arguments. Each string is printed in sequence,
+ * separated by a space, but no newline is printed at the end.
+ *
+ * @param aux The array of strings to print.
+ */
 static void printmatrix(char **aux)
 {
     int i;
@@ -31,7 +37,13 @@ static void printmatrix(char **aux)
     }
 }
 
-// Helper function to print all arguments when -n flag is used
+/**
+ * Prints all arguments except the first one, which is usually the command name.
+ * This function prints each argument followed by a space, but does not print
+ * a newline at the end.
+ *
+ * @param aux The array of strings containing the arguments.
+ */
 static void printmatrix_n(char **aux)
 {
     int i;
@@ -47,7 +59,14 @@ static void printmatrix_n(char **aux)
     }
 }
 
-// Helper function to check if an argument is the -n flag
+/**
+ * Checks if the first argument is "-n" and returns 1 if true, 0 otherwise.
+ * This function checks if the string starts with "-n" and ensures that
+ * all characters after "-" are 'n'.
+ *
+ * @param text The string to check.
+ * @return 1 if it starts with "-n", 0 otherwise.
+ */
 static int has_n(char *text)
 {
     int i;
@@ -70,25 +89,30 @@ static int has_n(char *text)
     return (hasn);
 }
 
-// Main echo implementation
+/**
+ *		Main echo implementation
+ *
+ *      If no arguments, print newline
+ *		If only -n flag, print nothing (no newline)
+ *		If arguments without -n flag, print all with newline
+ *		If arguments with -n flag, print all without newline
+ *		Returns 0 on success.
+ *
+ */
 int built_in_echo(t_command *command)
 {
     char **aux;
 
     aux = command->argv;
-    // If no arguments, just print newline
     if (command->argc == 1)
         ft_printf("\n");
-    // If only -n flag, print nothing (no newline)
     else if (command->argc == 2 && (has_n(command->argv[1]) == 1))
         ;
-    // If arguments without -n flag, print all with newline
     else if (command->argc >= 2 && (has_n(command->argv[1]) == 0))
     {
         printmatrix(aux);
         ft_printf("\n");
     }
-    // If arguments with -n flag, print all without newline
     else
         printmatrix_n(aux);
     return (0);
