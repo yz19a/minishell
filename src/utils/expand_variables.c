@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_variables.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 23:56:49 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/05/25 17:00:19 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/05/25 19:29:39 by yaperalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static char	*get_var(t_shell_data *data, char *line, int *var_len)
 		return (NULL);
 	var_name = ft_substr(line, 0, *var_len);
 	if (ft_strncmp(var_name, "?", 2) == 0)
-		return (free(var_name), ft_itoa(exit_status));
+		return (free(var_name), ft_itoa(g_exit_status));
 	var_value = get_env_value(data, var_name);
 	free(var_name);
 	if (!var_value)

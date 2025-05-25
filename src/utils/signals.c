@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 22:34:07 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/05/06 11:59:04 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/05/25 19:28:56 by yaperalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /*
-Muestra un nuevo prompt en una nueva línea usando funciones de Readline 
+Muestra un nuevo prompt en una nueva línea usando funciones de Readline
 */
 void	signal_reset_prompt(int signal)
 {
@@ -51,7 +51,6 @@ void	set_signals_interactive(void)
 	sigaction(SIGINT, &act, NULL);
 }
 
-
 void	print_newline(int signal)
 {
 	(void)signal;
@@ -59,10 +58,10 @@ void	print_newline(int signal)
 }
 
 /*
-Manejar señales para el shell en modo no interactivo (no se está esperando input):
-SIGINT(ctrl + c) y SIGQUIT(ctrl + \) deben ignorarse ya que solo deben afectar al
-proceso hijo que está en ejecución. Lo que hacemos es mostrar una nueva línea 
-únicamente
+Manejar señales para el shell en modo no interactivo (no se está esperando
+input): SIGINT(ctrl + c) y SIGQUIT(ctrl + \) deben ignorarse ya que solo
+deben afectar al proceso hijo que está en ejecución. Lo que hacemos es
+mostrar una nueva línea únicamente
 */
 void	set_signals_noninteractive(void)
 {
