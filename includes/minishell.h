@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:07:21 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/05/25 17:03:35 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/05/25 19:44:19 by yaperalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,21 @@
 # include <sys/wait.h>
 
 /* Structures */
-
 typedef struct s_command
 {
-    char	**argv;
-    int		argc;
-    int		fd_in;
-    int		fd_out;
+	char	**argv;
+	int		argc;
+	int		fd_in;
+	int		fd_out;
 }	t_command;
 
 typedef struct s_shell_data
 {
-    char	**env;
-    int		dup_stdin;
-    int		dup_stdout;
-    t_list	*commands;
-    char	**exportenv;
+	char	**env;
+	int		dup_stdin;
+	int		dup_stdout;
+	t_list	*commands;
+	char	**exportenv;
 }	t_shell_data;
 
 /* Function Prototypes */
@@ -78,12 +77,12 @@ void			free_exportenv(char **exportenv);
 void			exit_shell(t_shell_data *data, int exitcode);
 
 /* utils/expand_variables.c */
-void			expand_variables(char **line, t_shell_data *data, int expand_quotes);
+void			expand_variables(char **line, t_shell_data *data, int exp_qs);
 char			*expand_env_var(char *var, t_shell_data *data);
 
 /* utils/errors.c */
 char			*join_strs(char *str, char *add);
-int				print_error(char *command, char *detail, char *error_message, int err);
+int				print_error(char *cmd, char *detail, char *err_msg, int err);
 
 /* utils/pipes.c */
 void			close_pipes(t_shell_data *data, t_list *instr);
@@ -98,7 +97,7 @@ char			**split_env(char *str);
 int				set_env_var(t_shell_data *data, char *name, char *value);
 int				set_export_env_var(t_shell_data *data, char *key, char *value);
 int				remove_exportenv_var(t_shell_data *data, int idx);
-char	 		**realloc_export_env_vars(t_shell_data *data, int size);
+char			**realloc_export_env_vars(t_shell_data *data, int size);
 
 /* env/handle_env_var.c */
 int				get_env_var_index(char **env, char *var);
@@ -187,6 +186,6 @@ void			print_prompt(void);
 void			clear_input_buffer(void);
 
 /* Global signal */
-extern int	exit_status;
+extern int	g_exit_status;
 
 #endif

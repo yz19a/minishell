@@ -6,7 +6,7 @@
 /*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 23:56:49 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/05/25 19:29:39 by yaperalt         ###   ########.fr       */
+/*   Updated: 2025/05/25 19:43:11 by yaperalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	concat_me(char **line, int count, char *var_value, int var_name_len)
 	*line = result;
 }
 
-void	expand_variables(char **line, t_shell_data *data, int expand_quotes)
+void	expand_variables(char **line, t_shell_data *data, int exp_qs)
 {
 	int		var_name_len;
 	int		line_count;
@@ -64,7 +64,7 @@ void	expand_variables(char **line, t_shell_data *data, int expand_quotes)
 	{
 		if (*(*line + line_count) == '\'')
 			quote_found = !quote_found;
-		if (*(*line + line_count) == '$' && (!quote_found || expand_quotes))
+		if (*(*line + line_count) == '$' && (!quote_found || exp_qs))
 		{
 			var_value = get_var(data, (*line) + line_count + 1, &var_name_len);
 			if (!var_value)

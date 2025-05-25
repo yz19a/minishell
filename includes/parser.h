@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:14:16 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/04/07 23:14:17 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/05/25 19:39:33 by yaperalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_TYPES_H
-# define PARSER_TYPES_H
+#ifndef PARSER_H
+# define PARSER_H
 
 typedef enum e_parser_state
 {
