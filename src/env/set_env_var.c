@@ -6,7 +6,7 @@
 /*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 10:27:06 by yaperalt          #+#    #+#             */
-/*   Updated: 2025/05/25 16:06:30 by yaperalt         ###   ########.fr       */
+/*   Updated: 2025/05/25 16:11:08 by yaperalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,4 +92,27 @@ int	set_export_env_var(t_shell_data *data, char *key, char *value)
 	}
 	free_ptr(aux);
 	return (0);
+}
+
+int	remove_exportenv_var(t_shell_data *data, int idx)
+{
+	int	i;
+	int	count;
+
+	if (idx > env_size(data->exportenv))
+		return (0);
+	free_ptr(data->exportenv[idx]);
+	i = idx;
+	count = idx;
+	while (data->exportenv[i + 1])
+	{
+		data->exportenv[i] = ft_strdup(data->exportenv[i + 1]);
+		free_ptr(data->exportenv[i + 1]);
+		count++;
+		i++;
+	}
+	data->exportenv = realloc_expenv_vars(data, count);
+	if (!data->exportenv)
+		return (0);
+	return (1);
 }
