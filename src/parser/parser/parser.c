@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 19:01:33 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/05/19 20:24:43 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/05/26 14:28:10 by yaperalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
