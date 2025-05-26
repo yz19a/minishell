@@ -6,7 +6,7 @@
 #    By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/09 15:15:38 by yaperalt          #+#    #+#              #
-#    Updated: 2025/05/26 13:46:50 by yaperalt         ###   ########.fr        #
+#    Updated: 2025/05/26 14:02:07 by yaperalt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,7 +94,7 @@ clean:
 	@make clean -C $(LIBFT)
 	@echo "$(YELLOW)Cleaning object files...$(RESET)"
 	@echo "$(YELLOW)Cleaning libft...$(RESET)"
-	@echo "$(GREEN)Clean complete!$(RESET)"
+	@echo "$(GREEN)Basic clean complete, executable remaining!$(RESET)"
 
 fclean: clean
 	@rm -rf $(NAME)
