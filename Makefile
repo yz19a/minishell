@@ -6,10 +6,16 @@
 #    By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/09 15:15:38 by yaperalt          #+#    #+#              #
-#    Updated: 2025/05/25 16:30:35 by yaperalt         ###   ########.fr        #
+#    Updated: 2025/05/26 14:02:07 by yaperalt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+# ANSI color codes
+GREEN = \033[0;32m
+YELLOW = \033[0;33m
+RESET = \033[0m
+
+# Variables
 NAME	= minishell
 CC = cc
 CFLAGS	= -Wall -Wextra -Werror
@@ -17,16 +23,16 @@ CFLAGS	= -Wall -Wextra -Werror
 LIBFT	= libft
 LIBS = $(LIBFT)/libft.a
 
-# Detectar sistema operativo
+# Detect OS
 UNAME := $(shell uname)
 
-# Configuración para macOS
+# MacOS
 ifeq ($(UNAME), Darwin)
     RL_PATH  = /usr/local/opt/readline
     RL_LIB   = -I $(RL_PATH)/include
     RL_LINK  = -L $(RL_PATH)/lib
 else
-    # Configuración para Ubuntu
+    # Ubuntu
     RL_LIB   = -I /usr/include
     RL_LINK  = -L /usr/lib/x86_64-linux-gnu
 endif
@@ -75,18 +81,26 @@ libft:
 	make -C $(LIBFT)
 
 %.o: %.c
-	$(CC) $(CFLAGS) $(HEADERS) -c $< -o $@
+	@echo "$(YELLOW)Compiling $<...$(RESET)"
+	@$(CC) $(CFLAGS) $(HEADERS) -c $< -o $@
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(SRCS) $(LIBFT)/libft.a -lreadline $(RL_LINK) $(HEADERS) -o $(NAME)
+	@echo "$(GREEN)Linking $@$(RESET)"
+	@$(CC) $(CFLAGS) $(SRCS) $(LIBFT)/libft.a -lreadline $(RL_LINK) $(HEADERS) -o $(NAME)
+	@echo "$(GREEN)Compilation complete, executable created!$(RESET)"
 
 clean:
-	rm -rf $(OBJS)
-	make clean -C $(LIBFT)
+	@rm -rf $(OBJS)
+	@make clean -C $(LIBFT)
+	@echo "$(YELLOW)Cleaning object files...$(RESET)"
+	@echo "$(YELLOW)Cleaning libft...$(RESET)"
+	@echo "$(GREEN)Basic clean complete, executable remaining!$(RESET)"
 
 fclean: clean
-	rm -rf $(NAME)
-	rm -rf $(LIBFT)/libft.a
+	@rm -rf $(NAME)
+	@rm -rf $(LIBFT)/libft.a
+	@echo "$(YELLOW)Cleaning executable...$(RESET)"
+	@echo "$(GREEN)Full clean complete!$(RESET)"
 
 re: fclean all
 

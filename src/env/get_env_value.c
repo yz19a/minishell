@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_env_value.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 00:15:33 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/05/05 00:15:36 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/05/26 14:29:50 by yaperalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

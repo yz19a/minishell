@@ -6,7 +6,7 @@
 /*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 14:56:04 by yaperalt          #+#    #+#             */
-/*   Updated: 2025/05/25 16:38:20 by yaperalt         ###   ########.fr       */
+/*   Updated: 2025/05/26 14:30:19 by yaperalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,11 @@ int	remove_env_var(t_shell_data *data, int idx)
 	int	i;
 	int	count;
 
-	// verifica que el indice sea valido
 	if (idx > env_size(data->env))
 		return (0);
-	// se libera la memoria del string a borrar
 	free_ptr(data->env[idx]);
 	i = idx;
 	count = idx;
-	// movemos todas las variables siguientes a idx a una posicion atras
 	while (data->env[i + 1])
 	{
 		data->env[i] = ft_strdup(data->env[i + 1]);

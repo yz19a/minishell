@@ -12,11 +12,11 @@
 
 #include "minishell.h"
 
+// Actualiza estado al que pasamos tras leer la comilla
+// y actualiza la lista de tokens para incluir el símbolo actual como
+// nuevo token hasta que se cierren
 void	lex_quote_states(char **line, t_lex_st *st, t_list **res, char quote)
 {
-	// Actualiza estado al que pasamos tras leer la comilla
-	// y actualiza la lista de tokens para incluir el símbolo actual como
-	// nuevo token hasta que se cierren
 	*st = lex_next_state(*st, **line);
 	if (quote == '"')
 	{
@@ -31,12 +31,12 @@ void	lex_quote_states(char **line, t_lex_st *st, t_list **res, char quote)
 	(*line)++;
 }
 
+// Actualiza estado al que pasamos tras leer el símbolo actual
+// Actualiza estado al que pasamos tras leer el símbolo actual
+// y actualiza la lista de tokens para incluir el símbolo actual como
+// nuevo token o añadirlo a uno existente
 void	lex_word_state(char **line, t_lex_st *st, t_list **res)
 {
-	// Actualiza estado al que pasamos tras leer el símbolo actual
-	// Actualiza estado al que pasamos tras leer el símbolo actual
-	// y actualiza la lista de tokens para incluir el símbolo actual como
-	// nuevo token o añadirlo a uno existente
 	*st = lex_next_state(*st, **line);
 	if (**line == '|')
 		ft_lstadd_back(res, lex_create_token(TOK_PIPE, 0));
@@ -59,11 +59,11 @@ void	lex_word_state(char **line, t_lex_st *st, t_list **res)
 	(*line)++;
 }
 
+// Actualiza estado al que pasamos tras leer el símbolo actual
+// partiendo del estado inicial, aquí siempre hay que crear un
+// nuevo token
 void	lex_start_state(char **line, t_lex_st *state, t_list **res)
 {
-	// Actualiza estado al que pasamos tras leer el símbolo actual
-	// partiendo del estado inicial, aquí siempre hay que crear un
-	// nuevo token
 	*state = lex_next_state(*state, **line);
 	if (ft_strchr("'\"", **line))
 		ft_lstadd_back(res, lex_create_token(TOK_WORD, ft_strdup("")));

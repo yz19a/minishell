@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 20:20:41 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/05/19 20:20:53 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/05/26 14:27:51 by yaperalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

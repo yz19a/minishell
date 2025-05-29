@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 17:12:50 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/05/09 17:17:25 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/05/25 19:45:39 by yaperalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,16 @@ static int	add_detail_quotes(char *command)
 
 // Imprime el error por la salida estándar precedido del nombre
 // del programa y donde se produce. Devuelve el codigo del error
-int	print_error(char *command, char *detail, char *error_message, int err)
+int	print_error(char *cmd, char *detail, char *err_msg, int err)
 {
 	char	*msg;
 	int		detail_quotes;
 
-	detail_quotes = add_detail_quotes(command);
+	detail_quotes = add_detail_quotes(cmd);
 	msg = ft_strdup("minishell: ");
-	if (command != NULL)
+	if (cmd != NULL)
 	{
-		msg = join_strs(msg, command);
+		msg = join_strs(msg, cmd);
 		msg = join_strs(msg, ": ");
 	}
 	if (detail != NULL)
@@ -58,7 +58,7 @@ int	print_error(char *command, char *detail, char *error_message, int err)
 			msg = join_strs(msg, "'");
 		msg = join_strs(msg, ": ");
 	}
-	msg = join_strs(msg, error_message);
+	msg = join_strs(msg, err_msg);
 	ft_putendl_fd(msg, STDERR_FILENO);
 	free_ptr(msg);
 	return (err);

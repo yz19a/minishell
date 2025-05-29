@@ -6,15 +6,11 @@
 /*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 16:36:36 by yaperalt          #+#    #+#             */
-/*   Updated: 2025/05/25 18:32:50 by yaperalt         ###   ########.fr       */
+/*   Updated: 2025/05/26 14:01:18 by yaperalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-/**
- * Implements the echo command to print text.
- */
 
 /**
  * Prints the contents of the provided array of strings, which is typically
@@ -23,18 +19,18 @@
  *
  * @param aux The array of strings to print.
  */
-static void printmatrix(char **aux)
+static void	printmatrix(char **aux)
 {
-    int i;
+	int	i;
 
-    i = 1;
-    while (aux[i])
-    {
-        ft_printf("%s", aux[i]);
-        if (aux[i + 1])
-            ft_printf(" ");
-        i++;
-    }
+	i = 1;
+	while (aux[i])
+	{
+		ft_printf("%s", aux[i]);
+		if (aux[i + 1])
+			ft_printf(" ");
+		i++;
+	}
 }
 
 /**
@@ -44,19 +40,18 @@ static void printmatrix(char **aux)
  *
  * @param aux The array of strings containing the arguments.
  */
-static void printmatrix_n(char **aux)
+static void	printmatrix_n(char **aux)
 {
-    int i;
+	int	i;
 
-    // Start from index 2 to skip "echo" and "-n"
-    i = 2;
-    while (aux[i])
-    {
-        ft_printf("%s", aux[i]);
-        if (aux[i + 1])
-            ft_printf(" ");
-        i++;
-    }
+	i = 2;
+	while (aux[i])
+	{
+		ft_printf("%s", aux[i]);
+		if (aux[i + 1])
+			ft_printf(" ");
+		i++;
+	}
 }
 
 /**
@@ -67,26 +62,24 @@ static void printmatrix_n(char **aux)
  * @param text The string to check.
  * @return 1 if it starts with "-n", 0 otherwise.
  */
-static int has_n(char *text)
+static int	has_n(char *text)
 {
-    int i;
-    int hasn;
+	int	i;
+	int	hasn;
 
-    hasn = 0;
-    i = 0;
-    // Check if it starts with "-n"
-    if (ft_strncmp(text, "-n", 2) != 0)
-        return (hasn);
-    else
-    {
-        i++;
-        // Ensure all characters after "-" are 'n'
-        while (text[i] && text[i] == 'n')
-            i++;
-        if (text[i] == '\0')
-            hasn = 1;
-    }
-    return (hasn);
+	hasn = 0;
+	i = 0;
+	if (ft_strncmp(text, "-n", 2) != 0)
+		return (hasn);
+	else
+	{
+		i++;
+		while (text[i] && text[i] == 'n')
+			i++;
+		if (text[i] == '\0')
+			hasn = 1;
+	}
+	return (hasn);
 }
 
 /**
@@ -99,21 +92,21 @@ static int has_n(char *text)
  *		Returns 0 on success.
  *
  */
-int built_in_echo(t_command *command)
+int	built_in_echo(t_command *command)
 {
-    char **aux;
+	char	**aux;
 
-    aux = command->argv;
-    if (command->argc == 1)
-        ft_printf("\n");
-    else if (command->argc == 2 && (has_n(command->argv[1]) == 1))
-        ;
-    else if (command->argc >= 2 && (has_n(command->argv[1]) == 0))
-    {
-        printmatrix(aux);
-        ft_printf("\n");
-    }
-    else
-        printmatrix_n(aux);
-    return (0);
+	aux = command->argv;
+	if (command->argc == 1)
+		ft_printf("\n");
+	else if (command->argc == 2 && (has_n(command->argv[1]) == 1))
+		;
+	else if (command->argc >= 2 && (has_n(command->argv[1]) == 0))
+	{
+		printmatrix(aux);
+		ft_printf("\n");
+	}
+	else
+		printmatrix_n(aux);
+	return (0);
 }

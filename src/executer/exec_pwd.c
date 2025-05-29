@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pwd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 02:23:57 by yaperalt          #+#    #+#             */
-/*   Updated: 2025/05/06 11:35:45 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/05/26 14:19:58 by yaperalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
  * using malloc().
  */
 
-int execute_pwd(void)
+int	execute_pwd(void)
 {
-	char *pwd;
+	char	*pwd;
 
 	pwd = getcwd(NULL, 0);
 	printf("%s\n", pwd);

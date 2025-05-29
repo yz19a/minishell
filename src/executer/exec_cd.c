@@ -3,17 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 16:36:27 by yaperalt          #+#    #+#             */
-/*   Updated: 2025/05/25 15:15:55 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/05/26 13:57:22 by yaperalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /**
- * Updates PWD and OLDPWD variables
+ * Function to update the PWD and OLDPWD environment variables
+ * It sets OLDPWD to the current PWD, and PWD to the new directory
+ * If new is empty, it sets PWD to OLDPWD
+ * @param data Pointer to the shell data structure
+ * @param new The new directory to set as PWD
  */
 static void	update_pwds(t_shell_data *data, char *new)
 {
@@ -34,7 +38,13 @@ static void	update_pwds(t_shell_data *data, char *new)
 }
 
 /**
- * Function to execute the actual directory change
+ * Function to execute the cd command
+ * It changes the current working directory to the specified destination_dir
+ * If destination_dir is NULL, it updates PWD to the current working directory
+ * It returns 0 on success, or 1 if chdir fails
+ * @param destination_dir The directory to change to
+ * @param data Pointer to the shell data structure containing env vars
+ * @return int Returns 0 on success, or 1 on failure
  */
 static int	exec_cd(char *destination_dir, t_shell_data *data)
 {
@@ -63,7 +73,15 @@ static int	print_error_cd(char *dir)
 }
 
 /**
- * 'cd' command implementation
+ * Function to handle the built-in cd command
+ * It checks the number of arguments and calls exec_cd with the appropriate path
+ * If no arguments are provided, it changes to the HOME directory
+ * If ".." is provided, it changes to the parent directory
+ * If "." is provided, it sets OLDPWD to PWD without changing directories
+ * If an error occurs, it prints an error message
+ * @param command Pointer to the command structure containing the arguments
+ * @param data Pointer to the shell data structure containing the env vars
+ * @return int Returns 0 on success, or an error code
  */
 int	built_in_cd(t_command *command, t_shell_data *data)
 {
@@ -72,26 +90,23 @@ int	built_in_cd(t_command *command, t_shell_data *data)
 
 	status = 1;
 	if (command->argc == 1
-        || (ft_strncmp(command->argv[1], "--", 3) == 0 && command->argc == 2))
-    {
-        dest_path = get_env_value(data, "HOME");
-        status = exec_cd(dest_path, data);
-        free(dest_path);
-    }
-    // Handle "cd .." (go up one directory)
-    else if (command->argc == 2 && ft_strncmp(command->argv[1], "..", 3) == 0)
-        status = exec_cd(command->argv[1], data);
-    // Handle "cd ." (stay in current directory, just update OLDPWD)
-    else if (command->argc == 2 && ft_strncmp(command->argv[1], ".", 2) == 0)
-    {
-        dest_path = get_env_value(data, "PWD");
-        status = set_env_var(data, "OLDPWD", dest_path);
-        free(dest_path);
-    }
-    // Handle "cd path" (go to specified path)
-    else if (command->argc >= 2)
-        status = exec_cd(command->argv[1], data);
-    if (status == 1)
-        return (print_error_cd(command->argv[1]));
-    return (status);
+		|| (ft_strncmp(command->argv[1], "--", 3) == 0 && command->argc == 2))
+	{
+		dest_path = get_env_value(data, "HOME");
+		status = exec_cd(dest_path, data);
+		free(dest_path);
+	}
+	else if (command->argc == 2 && ft_strncmp(command->argv[1], "..", 3) == 0)
+		status = exec_cd(command->argv[1], data);
+	else if (command->argc == 2 && ft_strncmp(command->argv[1], ".", 2) == 0)
+	{
+		dest_path = get_env_value(data, "PWD");
+		status = set_env_var(data, "OLDPWD", dest_path);
+		free(dest_path);
+	}
+	else if (command->argc >= 2)
+		status = exec_cd(command->argv[1], data);
+	if (status == 1)
+		return (print_error_cd(command->argv[1]));
+	return (status);
 }

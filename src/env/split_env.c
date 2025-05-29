@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_env.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 00:16:42 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/05/06 11:35:53 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/05/26 14:29:57 by yaperalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

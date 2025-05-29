@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 02:27:14 by yaperalt          #+#    #+#             */
-/*   Updated: 2025/05/09 15:52:58 by yaperalt         ###   ########.fr       */
+/*   Updated: 2025/05/26 14:19:40 by yaperalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,16 @@
  * Helper functions for command execution
  */
 
-// interpret status code returned by a child processs after wait()
-// if the child didn't terminate normally it returns 1 as default error code
 int	decode_error(int err)
 {
 	int	res;
 
 	res = 1;
-	if(WIFEXITED(err))
+	if (WIFEXITED(err))
 		res = WEXITSTATUS(err);
 	return (res);
 }
 
-// function to check if command is a built-in
 int	is_builtin(char *command)
 {
 	return (ft_strncmp(command, "cd", 3) == 0
@@ -39,7 +36,6 @@ int	is_builtin(char *command)
 		|| ft_strncmp(command, "echo", 5) == 0);
 }
 
-// function to execute built-in commands
 int	execute_builtins(t_command *command, t_shell_data *data)
 {
 	int	status;
