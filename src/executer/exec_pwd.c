@@ -6,7 +6,7 @@
 /*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 02:23:57 by yaperalt          #+#    #+#             */
-/*   Updated: 2025/05/26 14:19:58 by yaperalt         ###   ########.fr       */
+/*   Updated: 2025/05/30 15:08:16 by yaperalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
  * using malloc().
  */
 
-int	execute_pwd(void)
+int	exec_pwd(void)
 {
 	char	*pwd;
 
