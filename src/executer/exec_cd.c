@@ -6,7 +6,7 @@
 /*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 16:36:27 by yaperalt          #+#    #+#             */
-/*   Updated: 2025/05/26 13:57:22 by yaperalt         ###   ########.fr       */
+/*   Updated: 2025/05/30 14:09:55 by yaperalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,17 @@ static int	print_error_cd(char *dir)
 	return (print_error("cd", dir, strerror(errno), 1));
 }
 
+static int	auxiliar(char *dir, int argc)
+{
+	if (argc > 2)
+	{
+		write(2, "minishell: cd: too many arguments\n", 35);
+		return (1);
+	}
+	else
+		return (print_error_cd(dir));
+}
+
 /**
  * Function to handle the built-in cd command
  * It checks the number of arguments and calls exec_cd with the appropriate path
@@ -104,9 +115,9 @@ int	built_in_cd(t_command *command, t_shell_data *data)
 		status = set_env_var(data, "OLDPWD", dest_path);
 		free(dest_path);
 	}
-	else if (command->argc >= 2)
+	else if (command->argc == 2)
 		status = exec_cd(command->argv[1], data);
-	if (status == 1)
-		return (print_error_cd(command->argv[1]));
+	if (status == 1 || command->argc > 2)
+		return (auxiliar(command->argv[1], command->argc));
 	return (status);
 }
