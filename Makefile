@@ -3,10 +3,11 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+         #
+#    By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/09 15:15:38 by yaperalt          #+#    #+#              #
 #    Updated: 2025/06/01 19:40:43 by yaperalt         ###   ########.fr        #
+#    Updated: 2025/06/05 18:16:27 by jalcausa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +29,7 @@ UNAME := $(shell uname)
 
 # MacOS
 ifeq ($(UNAME), Darwin)
-    RL_PATH  = /usr/local/opt/readline
+    RL_PATH  = /opt/homebrew/opt/readline
     RL_LIB   = -I $(RL_PATH)/include
     RL_LINK  = -L $(RL_PATH)/lib
 else
