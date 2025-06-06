@@ -6,7 +6,7 @@
 /*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 17:47:54 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/05/25 19:27:58 by yaperalt         ###   ########.fr       */
+/*   Updated: 2025/06/06 12:17:18 by yaperalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,27 @@ void	free_envs(t_shell_data *data)
 	int	i;
 
 	i = 0;
-	while (data->env[i])
+	if (data->env)
 	{
-		free_ptr(data->env[i]);
-		i++;
+		while (data->env[i])
+		{
+			free_ptr(data->env[i]);
+			i++;
+		}
+		free_ptr(data->env);
+		data->env = NULL;
 	}
-	free_ptr(data->env);
 	i = 0;
-	while (data->exportenv[i])
+	if (data->exportenv)
 	{
-		free_ptr(data->exportenv[i]);
-		i++;
+		while (data->exportenv[i])
+		{
+			free_ptr(data->exportenv[i]);
+			i++;
+		}
+		free_ptr(data->exportenv);
+		data->exportenv = NULL;
 	}
-	free_ptr(data->exportenv);
 }
 
 void	del_t_command(void *com)
