@@ -6,7 +6,7 @@
 /*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 03:52:48 by yaperalt          #+#    #+#             */
-/*   Updated: 2024/09/20 00:39:15 by yaperalt         ###   ########.fr       */
+/*   Updated: 2025/06/01 18:19:09 by yaperalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,30 @@
 	string, which is the result of the concatenation
 	of ’s1’ and ’s2’.
 */
-
 #include "libft.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*strjoin;
-	size_t	len;
+	char	*res;
+	size_t	s1_len;
+	size_t	s2_len;
 	size_t	i;
-	size_t	j;
 
 	if (!s1 || !s2)
-		return (NULL);
-	len = ft_strlen(s1) + ft_strlen(s2);
-	strjoin = malloc(sizeof(char) * (len + 1));
-	if (!strjoin)
-		return (NULL);
-	i = 0;
-	j = 0;
-	while (s1[i] != '\0')
-		strjoin[j++] = s1[i++];
-	i = 0;
-	while (s2[i] != '\0')
-		strjoin[j++] = s2[i++];
-	strjoin[j] = '\0';
-	return (strjoin);
+		return (0);
+	s1_len = ft_strlen(s1);
+	s2_len = ft_strlen(s2);
+	res = (char *) malloc((s1_len + s2_len + 1) * sizeof(char));
+	if (!res)
+		return (0);
+	i = -1;
+	while (++i < s1_len)
+		res[i] = s1[i];
+	i = -1;
+	while (++i < s2_len)
+		res[s1_len + i] = s2[i];
+	res[s1_len + s2_len] = 0;
+	return (res);
 }
 
 // int	main(void)

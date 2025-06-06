@@ -6,7 +6,7 @@
 /*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 10:27:06 by yaperalt          #+#    #+#             */
-/*   Updated: 2025/05/25 16:38:55 by yaperalt         ###   ########.fr       */
+/*   Updated: 2025/06/01 18:19:48 by yaperalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,12 @@ char	**realloc_env_vars(t_shell_data *data, int size)
  * Else creates a new one
  *
  */
-int	set_env_var(t_shell_data *data, char *name, char *value)
+int	set_env_var(t_shell_data *data, char *key, char *value)
 {
 	int		idx;
 	char	*aux;
 
-	idx = get_env_var_index(data->env, name);
+	idx = get_env_var_index(data->env, key);
 	if (value == NULL)
 		value = "";
 	aux = ft_strjoin("=", value);
@@ -54,17 +54,17 @@ int	set_env_var(t_shell_data *data, char *name, char *value)
 	if (idx != -1 && data->env[idx])
 	{
 		free_ptr(data->env[idx]);
-		data->env[idx] = ft_strjoin(name, aux);
+		data->env[idx] = ft_strjoin(key, aux);
 	}
 	else
 	{
 		idx = env_size(data->env);
-		data->env = realloc_env_vars(data, (idx + 1));
+		data->env = realloc_env_vars(data, idx + 1);
 		if (!data->env)
 			return (12);
-		data->env[idx] = ft_strjoin(name, value);
+		data->env[idx] = ft_strjoin(key, aux);
 	}
-	free(aux);
+	free_ptr(aux);
 	return (0);
 }
 

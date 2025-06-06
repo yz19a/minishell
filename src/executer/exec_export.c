@@ -6,7 +6,7 @@
 /*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 16:36:47 by yaperalt          #+#    #+#             */
-/*   Updated: 2025/05/26 14:26:43 by yaperalt         ###   ########.fr       */
+/*   Updated: 2025/06/01 18:14:28 by yaperalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@ static void	free_args(char **arg)
 {
 	int	i;
 
-	i = 0;
 	if (!arg)
 		return ;
+	i = 0;
 	while (arg[i])
 	{
 		free(arg[i]);
 		i++;
 	}
-	free(arg[i]);
+	free(arg);
 }
 
 // helper function to print evironment variables in export format
@@ -87,11 +87,11 @@ static int	is_valid_name(char *arg)
  * Other wise stored in ENV and EXPORT with the values
  *
  */
-static int	set_variables(t_command *command, t_shell_data *data)
+static int	set_infinite_vars(t_command *command, t_shell_data *data)
 {
 	int		i;
 	char	**args;
-	char	**splitted;
+	char	**splited;
 
 	i = 0;
 	args = command->argv;
@@ -103,10 +103,10 @@ static int	set_variables(t_command *command, t_shell_data *data)
 				set_export_env_var(data, args[i], "");
 			else
 			{
-				splitted = ft_split(args[i], '=');
-				set_env_var(data, splitted[0], splitted[1]);
-				set_export_env_var(data, splitted[0], splitted[1]);
-				free_args(splitted);
+				splited = ft_split(args[i], '=');
+				set_env_var(data, splited[0], splited[1]);
+				set_export_env_var(data, splited[0], splited[1]);
+				free_args(splited);
 			}
 		}
 		else
@@ -125,6 +125,6 @@ int	built_in_export(t_command *command, t_shell_data *data)
 	if (command->argc == 1)
 		print_export_env(data);
 	else if (command->argc > 1)
-		status = set_variables(command, data);
+		status = set_infinite_vars(command, data);
 	return (status);
 }
