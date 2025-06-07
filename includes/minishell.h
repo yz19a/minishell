@@ -6,7 +6,7 @@
 /*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:07:21 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/05/30 15:10:23 by yaperalt         ###   ########.fr       */
+/*   Updated: 2025/06/07 21:51:47 by yaperalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,22 +92,12 @@ void			close_pipes(t_shell_data *data, t_list *instr);
 
 /* env/get_env_value.c */
 char			*get_env_value(t_shell_data *data, char *key);
-
-/* env/split_env.c */
 char			**split_env(char *str);
-
-/* env/set_env_var.c */
 int				set_env_var(t_shell_data *data, char *name, char *value);
 int				set_export_env_var(t_shell_data *data, char *key, char *value);
 int				remove_exportenv_var(t_shell_data *data, int idx);
-char			**realloc_export_env_vars(t_shell_data *data, int size);
-
-/* env/handle_env_var.c */
 int				get_env_var_index(char **env, char *var);
 int				remove_env_var(t_shell_data *data, int idx);
-char			**realloc_env_vars(t_shell_data *data, int size);
-
-/* env/parse_env.c */
 char			**get_path(char **env);
 void			free_path(char **path);
 
