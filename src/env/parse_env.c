@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 15:44:30 by yaperalt          #+#    #+#             */
-/*   Updated: 2025/06/08 01:03:46 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/06/08 01:28:16 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,15 @@ char	**get_path(char **env)
 	char	**arg;
 	char	**res;
 
-	while (env)
+	while (*env)
 	{
 		arg = ft_split(*env, '=');
 		if (!arg || !arg[0] || !arg[1])
-			return (free_args(arg));
+		{
+			free_args(arg);
+			env++;
+			continue;
+		}
 		if (ft_strncmp(arg[0], "PATH", 4) == 0)
 		{
 			res = compute_path(arg[1]);
