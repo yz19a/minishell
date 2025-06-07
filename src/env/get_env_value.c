@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_env_value.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amorilla <amorilla@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/04 20:00:30 by aruzafa-          #+#    #+#             */
-/*   Updated: 2023/06/18 17:15:46 by amorilla         ###   ########.fr       */
+/*   Created: 2023/06/04 20:00:30 by yaperalt          #+#    #+#             */
+/*   Updated: 2025/06/08 01:03:35 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

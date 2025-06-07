@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_env.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amorilla <amorilla@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/18 16:51:05 by amorilla          #+#    #+#             */
-/*   Updated: 2023/06/18 17:13:36 by amorilla         ###   ########.fr       */
+/*   Created: 2023/06/18 16:51:05 by yaperalt          #+#    #+#             */
+/*   Updated: 2025/06/08 01:05:01 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
