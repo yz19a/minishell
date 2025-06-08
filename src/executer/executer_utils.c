@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 02:27:14 by yaperalt          #+#    #+#             */
-/*   Updated: 2025/06/08 13:12:46 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/06/08 13:21:32 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,15 @@
 int	decode_error(int err)
 {
 	int	res;
+	int	sig;
 
 	res = 1;
+	sig = 0;
 	if (WIFEXITED(err))
 		res = WEXITSTATUS(err);
 	else if (WIFSIGNALED(err))
 	{
-		int sig = WTERMSIG(err);
+		sig = WTERMSIG(err);
 		if (sig == SIGINT)
 			res = 130;
 		else if (sig == SIGQUIT)
