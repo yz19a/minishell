@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_loop.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:13:50 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/05/25 19:15:46 by yaperalt         ###   ########.fr       */
+/*   Updated: 2025/06/08 13:07:38 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,12 @@ void	shell_loop(t_shell_data *data)
 		free(line);
 		if (!data->commands)
 			continue ;
+		set_signals_noninteractive();
 		if (ft_lstsize(data->commands) == 1)
 			g_exit_status = execute(data->commands, data);
-		else if (ft_lstsize(data->commands) > 1)
+		else
 			g_exit_status = execute_pipex(data);
+		set_signals_interactive();
 		pars_free_command_list(&(data->commands));
 	}
 }
