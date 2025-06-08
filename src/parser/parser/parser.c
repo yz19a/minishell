@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 19:01:33 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/06/08 17:31:37 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/06/08 17:36:16 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,29 +106,29 @@ t_pars_st	pars_next_state(t_pars_st st, t_token *tok)
 
 t_list	*parser(t_list *tokens, t_shell_data *data)
 {
-    t_pars_st	state;
-    t_list		*commands;
-    t_pars_err	err;
+	t_pars_st	state;
+	t_list		*commands;
+	t_pars_err	err;
 
-    commands = 0;
-    state = PARS_START;
-    err = PARS_NO_ERROR;
-    while (tokens && err == PARS_NO_ERROR)
-    {
-        err = pars_states(tokens, &state, &commands, data);
-        if (err == PARS_CANCELLED)
-            break;  // Salir del bucle sin procesar más tokens
-        tokens = tokens->next;
-    }
-    pars_print_error(state, err);
-    if ((err != PARS_NO_ERROR || state != PARS_COMMAND)
+	commands = 0;
+	state = PARS_START;
+	err = PARS_NO_ERROR;
+	while (tokens && err == PARS_NO_ERROR)
+	{
+		err = pars_states(tokens, &state, &commands, data);
+		if (err == PARS_CANCELLED)
+			break ;
+		tokens = tokens->next;
+	}
+	pars_print_error(state, err);
+	if ((err != PARS_NO_ERROR || state != PARS_COMMAND)
 		&& err == PARS_CANCELLED)
-    {
-	    pars_free_command_list(&commands);
-	    return ((t_list *) 0);
-    }
+	{
+		pars_free_command_list(&commands);
+		return ((t_list *) 0);
+	}
 	if (err != PARS_NO_ERROR || state != PARS_COMMAND)
 		return (pars_free_command_list(&commands), (t_list *) 0);
-    set_pipes(commands);
-    return (commands);
+	set_pipes(commands);
+	return (commands);
 }
