@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 02:27:14 by yaperalt          #+#    #+#             */
-/*   Updated: 2025/05/30 15:07:57 by yaperalt         ###   ########.fr       */
+/*   Updated: 2025/06/08 13:21:32 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,22 @@
 int	decode_error(int err)
 {
 	int	res;
+	int	sig;
 
 	res = 1;
+	sig = 0;
 	if (WIFEXITED(err))
 		res = WEXITSTATUS(err);
+	else if (WIFSIGNALED(err))
+	{
+		sig = WTERMSIG(err);
+		if (sig == SIGINT)
+			res = 130;
+		else if (sig == SIGQUIT)
+			res = 131;
+		else
+			res = 128 + sig;
+	}
 	return (res);
 }
 
