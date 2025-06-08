@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 20:18:13 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/05/19 20:18:14 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/06/08 15:23:44 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,25 @@ static void	read_heredoc(int fd, char *value, t_shell_data *data)
 {
 	char	*line;
 
+	signal(SIGINT, SIG_DFL);
 	while (1)
 	{
 		line = readline(" >> ");
-		if (!line)
-			break ;
+		if (!line) // Ctrl+D o Ctrl+C
+		{
+			printf("\n");
+			break;
+		}
 		expand_variables(&line, data, 1);
-		if (ft_strncmp(line, value, ft_strlen(line)) == 0)
+		if (ft_strncmp(line, value, ft_strlen(value)) == 0 && ft_strlen(line) == ft_strlen(value))
 		{
 			free(line);
-			break ;
+			break;
 		}
 		ft_putendl_fd(line, fd);
 		free(line);
 	}
+	set_signals_noninteractive();
 	close(fd);
 }
 
