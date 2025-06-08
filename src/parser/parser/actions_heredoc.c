@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 20:18:13 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/06/08 17:10:11 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/06/08 17:22:45 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ static void	read_heredoc(int fd, char *value, t_shell_data *data)
 		if (!line)
 		{
 			printf("\n");
-			break;
+			break ;
 		}
 		expand_variables(&line, data, 1);
-		if (ft_strncmp(line, value, ft_strlen(value)) == 0 && \
-			ft_strlen(line) == ft_strlen(value))
+		if (ft_strncmp(line, value, ft_strlen(value)) == 0
+			&&ft_strlen(line) == ft_strlen(value))
 		{
 			free(line);
-			break;
+			break ;
 		}
 		ft_putendl_fd(line, fd);
 		free(line);
@@ -50,7 +50,7 @@ static int	child_heredoc(char *filename, char *value, t_shell_data *data)
 {
 	int		status;
 	pid_t	pid;
-	
+
 	pid = fork();
 	if (pid == 0)
 	{
@@ -58,10 +58,11 @@ static int	child_heredoc(char *filename, char *value, t_shell_data *data)
 			value, data);
 		exit(0);
 	}
-	else if (pid > 0) 
+	else if (pid > 0)
 	{
 		waitpid(pid, &status, 0);
-		if (WIFEXITED(status) && WEXITSTATUS(status) == 1) {
+		if (WIFEXITED(status) && WEXITSTATUS(status) == 1)
+		{
 			unlink(filename);
 			return (1);
 		}
@@ -73,28 +74,29 @@ static int	child_heredoc(char *filename, char *value, t_shell_data *data)
 
 t_pars_err	pars_create_heredoc(t_list	*cmds, char *value, t_shell_data *data)
 {
-    t_command		*command;
-    static size_t	next_heredoc_code = 0;
-    char			*filename;
-    char			*tmp;
-    int				child_result;
+	t_command		*command;
+	static size_t	next_heredoc_code = 0;
+	char			*filename;
+	char			*tmp;
+	int				child_result;
 
-    command = (t_command *) ft_lstlast(cmds)->content;
-    tmp = ft_itoa(next_heredoc_code++);
-    if (!tmp)
-        return (PARS_MALLOC_ERROR);
-    filename = ft_strjoin("/tmp/.minishel_heredoc_", tmp);
-    free(tmp);
-    if (!filename)
-        return (PARS_MALLOC_ERROR);
-    child_result = child_heredoc(filename, value, data);
-    if (child_result == 1) {
-        free(filename);
-        command->fd_in = -1;
-        g_exit_status = 130;
-        return (PARS_CANCELLED);
-    }
-    command->fd_in = open(filename, O_RDONLY, 0666);
-    free(filename);
-    return (PARS_NO_ERROR);
+	command = (t_command *) ft_lstlast(cmds)->content;
+	tmp = ft_itoa(next_heredoc_code++);
+	if (!tmp)
+		return (PARS_MALLOC_ERROR);
+	filename = ft_strjoin("/tmp/.minishel_heredoc_", tmp);
+	free(tmp);
+	if (!filename)
+		return (PARS_MALLOC_ERROR);
+	child_result = child_heredoc(filename, value, data);
+	if (child_result == 1)
+	{
+		free(filename);
+		command->fd_in = -1;
+		g_exit_status = 130;
+		return (PARS_CANCELLED);
+	}
+	command->fd_in = open(filename, O_RDONLY, 0666);
+	free(filename);
+	return (PARS_NO_ERROR);
 }

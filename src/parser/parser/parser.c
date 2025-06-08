@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 19:01:33 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/06/08 17:02:35 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/06/08 17:31:37 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,15 +121,14 @@ t_list	*parser(t_list *tokens, t_shell_data *data)
         tokens = tokens->next;
     }
     pars_print_error(state, err);
-    if (err != PARS_NO_ERROR || state != PARS_COMMAND)
+    if ((err != PARS_NO_ERROR || state != PARS_COMMAND)
+		&& err == PARS_CANCELLED)
     {
-        if (err == PARS_CANCELLED)
-        {
-            pars_free_command_list(&commands);
-            return (NULL);
-        }
-        return (pars_free_command_list(&commands), (t_list *) 0);
+	    pars_free_command_list(&commands);
+	    return ((t_list *) 0);
     }
+	if (err != PARS_NO_ERROR || state != PARS_COMMAND)
+		return (pars_free_command_list(&commands), (t_list *) 0);
     set_pipes(commands);
     return (commands);
 }
