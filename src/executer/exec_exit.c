@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 16:36:43 by yaperalt          #+#    #+#             */
-/*   Updated: 2025/06/08 17:34:45 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/06/08 17:48:46 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,12 @@ int	built_in_exit(t_command *command, t_shell_data *data)
 	{
 		if (!isnum(command->argv[1]))
 			exitshell(data,
-				print_error("exit", 0, "numeric argument required", 255));
+				print_error("exit", 0, "numeric argument required", 2));
 		return (print_error("exit", 0, "too many arguments", 1));
 	}
 	if (!isnum(command->argv[1]) && command->argc > 1)
 		exitshell(data,
-			print_error("exit", 0, "numeric argument required", 255));
+			print_error("exit", 0, "numeric argument required", 2));
 	else if (command->argc == 1)
 		exitshell(data, 0);
 	else
