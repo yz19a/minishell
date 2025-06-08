@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 20:18:13 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/06/08 16:22:27 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/06/08 17:10:11 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,34 +58,43 @@ static int	child_heredoc(char *filename, char *value, t_shell_data *data)
 			value, data);
 		exit(0);
 	}
-	else if (pid > 0)
-		waitpid(pid, &status, 0);
-	else
+	else if (pid > 0) 
 	{
-		free(filename);
-		return (1);
+		waitpid(pid, &status, 0);
+		if (WIFEXITED(status) && WEXITSTATUS(status) == 1) {
+			unlink(filename);
+			return (1);
+		}
 	}
+	else
+		return (1);
 	return (0);
 }
 
 t_pars_err	pars_create_heredoc(t_list	*cmds, char *value, t_shell_data *data)
 {
-	t_command		*command;
-	static size_t	next_heredoc_code = 0;
-	char			*filename;
-	char			*tmp;
+    t_command		*command;
+    static size_t	next_heredoc_code = 0;
+    char			*filename;
+    char			*tmp;
+    int				child_result;
 
-	command = (t_command *) ft_lstlast(cmds)->content;
-	tmp = ft_itoa(next_heredoc_code++);
-	if (!tmp)
-		return (PARS_MALLOC_ERROR);
-	filename = ft_strjoin("/tmp/.minishel_heredoc_", tmp);
-	free(tmp);
-	if (!filename)
-		return (PARS_MALLOC_ERROR);
-	if (child_heredoc(filename, value, data) == 1)
-		return (PARS_MALLOC_ERROR);
-	command->fd_in = open(filename, O_RDONLY, 0666);
-	free(filename);
-	return (PARS_NO_ERROR);
+    command = (t_command *) ft_lstlast(cmds)->content;
+    tmp = ft_itoa(next_heredoc_code++);
+    if (!tmp)
+        return (PARS_MALLOC_ERROR);
+    filename = ft_strjoin("/tmp/.minishel_heredoc_", tmp);
+    free(tmp);
+    if (!filename)
+        return (PARS_MALLOC_ERROR);
+    child_result = child_heredoc(filename, value, data);
+    if (child_result == 1) {
+        free(filename);
+        command->fd_in = -1;
+        g_exit_status = 130;
+        return (PARS_CANCELLED);
+    }
+    command->fd_in = open(filename, O_RDONLY, 0666);
+    free(filename);
+    return (PARS_NO_ERROR);
 }

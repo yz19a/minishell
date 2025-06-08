@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:14:16 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/05/26 13:37:40 by yaperalt         ###   ########.fr       */
+/*   Updated: 2025/06/08 16:53:15 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef enum e_parser_error
 	PARS_SYNTAX_ERROR,
 	PARS_MALLOC_ERROR,
 	PARS_NO_SUCH_FILE_OR_DIR,
+	PARS_CANCELLED
 }	t_pars_err;
 
 #endif

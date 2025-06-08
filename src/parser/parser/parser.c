@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 19:01:33 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/05/26 14:28:10 by yaperalt         ###   ########.fr       */
+/*   Updated: 2025/06/08 17:02:35 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static void	pars_print_error(t_pars_st state, t_pars_err err)
 		print_error("parser", 0, "memory error", 0);
 	else if (err == PARS_NO_SUCH_FILE_OR_DIR)
 		print_error("parser", 0, "no such file or directory", 0);
+	else if (err == PARS_CANCELLED)
+		return ;
 	else if (state != PARS_COMMAND || err == PARS_SYNTAX_ERROR)
 		print_error("parser", 0, "syntax error", 0);
 }
@@ -104,21 +106,30 @@ t_pars_st	pars_next_state(t_pars_st st, t_token *tok)
 
 t_list	*parser(t_list *tokens, t_shell_data *data)
 {
-	t_pars_st	state;
-	t_list		*commands;
-	t_pars_err	err;
+    t_pars_st	state;
+    t_list		*commands;
+    t_pars_err	err;
 
-	commands = 0;
-	state = PARS_START;
-	err = PARS_NO_ERROR;
-	while (tokens && err == PARS_NO_ERROR)
-	{
-		err = pars_states(tokens, &state, &commands, data);
-		tokens = tokens->next;
-	}
-	pars_print_error(state, err);
-	if (err != PARS_NO_ERROR || state != PARS_COMMAND)
-		return (pars_free_command_list(&commands), (t_list *) 0);
-	set_pipes(commands);
-	return (commands);
+    commands = 0;
+    state = PARS_START;
+    err = PARS_NO_ERROR;
+    while (tokens && err == PARS_NO_ERROR)
+    {
+        err = pars_states(tokens, &state, &commands, data);
+        if (err == PARS_CANCELLED)
+            break;  // Salir del bucle sin procesar más tokens
+        tokens = tokens->next;
+    }
+    pars_print_error(state, err);
+    if (err != PARS_NO_ERROR || state != PARS_COMMAND)
+    {
+        if (err == PARS_CANCELLED)
+        {
+            pars_free_command_list(&commands);
+            return (NULL);
+        }
+        return (pars_free_command_list(&commands), (t_list *) 0);
+    }
+    set_pipes(commands);
+    return (commands);
 }
