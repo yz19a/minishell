@@ -3,36 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   parse_env.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/14 02:23:57 by yaperalt          #+#    #+#             */
-/*   Updated: 2025/05/26 14:33:38 by yaperalt         ###   ########.fr       */
+/*   Created: 2023/06/05 15:44:30 by yaperalt          #+#    #+#             */
+/*   Updated: 2025/06/08 01:28:16 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/**
- * Contains functions to parse and manipulate environment variables.
- */
-
-// function to free PATH array
-void	free_path(char **path)
-{
-	int	i;
-
-	i = 0;
-	while (path[i])
-	{
-		free(path[i]);
-		i++;
-	}
-	free(path);
-}
-
-// Helper function to compute PATH environment variable
-// Split PATH by colon
-// Add trailing slash to each directory
 static char	**compute_path(char *arg)
 {
 	size_t	i;
@@ -53,8 +32,7 @@ static char	**compute_path(char *arg)
 	return (res);
 }
 
-// Helper function to free array of strings
-static char	**free_args(char **arg)
+static char	**free_args(char	**arg)
 {
 	if (!arg)
 		return (0);
@@ -66,19 +44,20 @@ static char	**free_args(char **arg)
 	return (0);
 }
 
-// Function to get PATH environment variable
-// Split environment variable by '='
-// Check if variable is PATH
 char	**get_path(char **env)
 {
 	char	**arg;
 	char	**res;
 
-	while (env)
+	while (*env)
 	{
 		arg = ft_split(*env, '=');
 		if (!arg || !arg[0] || !arg[1])
-			return (free_args(arg));
+		{
+			free_args(arg);
+			env++;
+			continue;
+		}
 		if (ft_strncmp(arg[0], "PATH", 4) == 0)
 		{
 			res = compute_path(arg[1]);
@@ -90,4 +69,17 @@ char	**get_path(char **env)
 		env++;
 	}
 	return (0);
+}
+
+void	free_path(char **path)
+{
+	size_t	i;
+
+	i = 0;
+	while (path[i])
+	{
+		free(path[i]);
+		i++;
+	}
+	free(path);
 }

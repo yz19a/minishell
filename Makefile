@@ -3,13 +3,13 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+         #
+#    By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/09 15:15:38 by yaperalt          #+#    #+#              #
-#    Updated: 2025/06/01 19:40:43 by yaperalt         ###   ########.fr        #
-#    Updated: 2025/06/05 18:16:27 by jalcausa         ###   ########.fr        #
+#    Updated: 2025/06/07 21:49:13 by yaperalt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 # ANSI color codes
 GREEN = \033[0;32m
@@ -42,37 +42,38 @@ HEADERS = -I $(LIBFT) -I ./includes $(RL_LIB)
 
 
 SRCS	= 	src/main.c							\
-			src/shell_loop.c					\
-			src/utils/init.c					\
-			src/utils/signals.c					\
-			src/utils/exit.c					\
-			src/utils/free.c					\
-			src/utils/expand_variables.c		\
-			src/utils/errors.c					\
-			src/utils/pipes.c					\
-			src/env/get_env_value.c				\
-			src/env/split_env.c					\
-			src/env/set_env_var.c				\
-			src/env/parse_env.c					\
-			src/env/handle_env_var.c			\
-			src/parser/lexer/lexer.c			\
-			src/parser/lexer/states.c			\
-			src/parser/lexer/utils.c			\
-			src/parser/parser/parser.c			\
-			src/parser/parser/states.c			\
-			src/parser/parser/states2.c			\
-			src/parser/parser/actions.c			\
-			src/parser/parser/actions_heredoc.c	\
-			src/parser/parser/utils.c			\
-			src/executer/executer.c				\
-			src/executer/exec_cd.c				\
-			src/executer/exec_echo.c			\
-			src/executer/exec_env.c				\
-			src/executer/exec_exit.c			\
-			src/executer/exec_export.c			\
-			src/executer/exec_pwd.c				\
-			src/executer/exec_unset.c			\
-			src/executer/executer_utils.c
+            src/shell_loop.c					\
+            src/utils/init.c					\
+            src/utils/signals.c					\
+            src/utils/exit.c					\
+            src/utils/free.c					\
+            src/utils/expand_variables.c		\
+            src/utils/errors.c					\
+            src/utils/pipes.c					\
+            src/env/get_env_value.c				\
+            src/env/split_env.c					\
+            src/env/set_export_env_var.c		\
+            src/env/parse_env.c					\
+            src/env/remove_env_var.c			\
+            src/env/remove_exportenv_var.c		\
+            src/parser/lexer/lexer.c			\
+            src/parser/lexer/states.c			\
+            src/parser/lexer/utils.c			\
+            src/parser/parser/parser.c			\
+            src/parser/parser/states.c			\
+            src/parser/parser/states2.c			\
+            src/parser/parser/actions.c			\
+            src/parser/parser/actions_heredoc.c	\
+            src/parser/parser/utils.c			\
+            src/executer/executer.c				\
+            src/executer/exec_cd.c				\
+            src/executer/exec_echo.c			\
+            src/executer/exec_env.c				\
+            src/executer/exec_exit.c			\
+            src/executer/exec_export.c			\
+            src/executer/exec_pwd.c				\
+            src/executer/exec_unset.c			\
+            src/executer/executer_utils.c
 
 OBJS	= $(SRCS:.c=.o)
 
@@ -87,7 +88,7 @@ libft:
 
 $(NAME): $(OBJS)
 	@echo "$(GREEN)Linking $@$(RESET)"
-	@$(CC) $(CFLAGS) $(SRCS) $(LIBFT)/libft.a -lreadline $(RL_LINK) $(HEADERS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT)/libft.a -lreadline $(RL_LINK) $(HEADERS) -o $(NAME)
 	@echo "$(GREEN)Compilation complete, executable created!$(RESET)"
 
 clean:
