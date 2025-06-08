@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 02:24:26 by yaperalt          #+#    #+#             */
-/*   Updated: 2025/06/08 11:57:01 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/06/08 13:20:41 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ static int	execaux(t_command *instr, t_shell_data *data)
 	char	*comand_and_path;
 	char	**path;
 
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
 	path = get_path(data->env);
 	if (!path)
 	{

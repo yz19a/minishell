@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 22:34:07 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/05/25 19:28:56 by yaperalt         ###   ########.fr       */
+/*   Updated: 2025/06/08 13:18:25 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	set_signals_noninteractive(void)
 	struct sigaction	act;
 
 	ft_memset(&act, 0, sizeof(act));
-	act.sa_handler = &print_newline;
+	act.sa_handler = SIG_IGN;
 	sigaction(SIGINT, &act, NULL);
 	sigaction(SIGQUIT, &act, NULL);
 }
