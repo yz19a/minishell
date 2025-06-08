@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 02:27:14 by yaperalt          #+#    #+#             */
-/*   Updated: 2025/06/08 13:21:32 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/06/08 15:47:02 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	is_builtin(char *command)
 		|| ft_strncmp(command, "echo", 5) == 0);
 }
 
-int	execute_builtins(t_command *command, t_shell_data *data)
+int	execute_builtins(t_command *command, t_shell_data *data, int pipe)
 {
 	int	status;
 
@@ -61,7 +61,9 @@ int	execute_builtins(t_command *command, t_shell_data *data)
 		status = built_in_export(command, data);
 	else if (ft_strncmp(command->argv[0], "unset", 6) == 0)
 		status = built_in_unset(command, data);
-	else if (ft_strncmp(command->argv[0], "exit", 5) == 0)
+	else if (ft_strncmp(command->argv[0], "exit", 5) == 0 && pipe == 1)
+		status = 0;
+	else if (ft_strncmp(command->argv[0], "exit", 5) == 0 && pipe == 0)
 		status = built_in_exit(command, data);
 	else if (ft_strncmp(command->argv[0], "echo", 5) == 0)
 		status = built_in_echo(command);

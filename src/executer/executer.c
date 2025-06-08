@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 02:24:26 by yaperalt          #+#    #+#             */
-/*   Updated: 2025/06/08 13:20:41 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/06/08 15:46:40 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ static int	execute_generic(t_command *instr, t_shell_data *data)
  * @param data Pointer to the shell data structure containing env vars
  * @return int Returns 0 on success, or an error code
  */
-int	execute(t_list *instr, t_shell_data *data)
+int	execute(t_list *instr, t_shell_data *data, int pipe)
 {
 	int			status;
 	t_command	*command;
@@ -128,7 +128,7 @@ int	execute(t_list *instr, t_shell_data *data)
 		dup2(command->fd_out, STDOUT_FILENO);
 	close_pipes(data, instr);
 	if (is_builtin(command->argv[0]))
-		status = execute_builtins(command, data);
+		status = execute_builtins(command, data, pipe);
 	else
 		status = execute_generic(command, data);
 	if (command->fd_out > 0)
@@ -163,7 +163,7 @@ int	execute_pipex(t_shell_data *data)
 		if (last_pid < 0)
 			return (last_pid);
 		if (last_pid == 0)
-			exit(execute(commands, data));
+			exit(execute(commands, data, 1));
 		commands = commands->next;
 	}
 	commands = data->commands;

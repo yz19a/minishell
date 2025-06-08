@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:13:50 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/06/08 13:07:38 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/06/08 15:41:31 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	shell_loop(t_shell_data *data)
 			continue ;
 		set_signals_noninteractive();
 		if (ft_lstsize(data->commands) == 1)
-			g_exit_status = execute(data->commands, data);
+			g_exit_status = execute(data->commands, data, 0);
 		else
 			g_exit_status = execute_pipex(data);
 		set_signals_interactive();
