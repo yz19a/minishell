@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 20:18:13 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/06/08 15:23:44 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/06/08 15:25:58 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	read_heredoc(int fd, char *value, t_shell_data *data)
 	while (1)
 	{
 		line = readline(" >> ");
-		if (!line) // Ctrl+D o Ctrl+C
+		if (!line)
 		{
 			printf("\n");
 			break;
