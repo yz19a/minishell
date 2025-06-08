@@ -119,7 +119,7 @@ int	execute(t_list *instr, t_shell_data *data)
 	int			status;
 	t_command	*command;
 
-	command = (t_command *) instr->content;
+	command = (t_command *)instr->content;
 	if (!command->argv || !command->argv[0])
 		return (0);
 	if (command->fd_in > 0)
