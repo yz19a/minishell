@@ -6,7 +6,7 @@
 /*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 16:36:47 by yaperalt          #+#    #+#             */
-/*   Updated: 2025/06/01 18:14:28 by yaperalt         ###   ########.fr       */
+/*   Updated: 2025/06/08 15:02:56 by yaperalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,14 @@ static int	is_valid_name(char *arg)
 	i = 0;
 	is_valid = 1;
 	invalid_chars = ":-!/?+^.,";
-	if (arg[0] == '=')
+	if (!arg || arg[0] == '=' || arg[0] == '\0')
 		return (0);
 	splitted = ft_split(arg, '=');
+	if (!splitted[0] || splitted[0][0] == '\0')
+	{
+		free_args(splitted);
+		return (0);
+	}
 	while (((i < (int)ft_strlen(splitted[0]))) && (is_valid == 1))
 	{
 		if (ft_strchr(invalid_chars, splitted[0][i])
