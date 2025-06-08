@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 02:24:26 by yaperalt          #+#    #+#             */
-/*   Updated: 2025/06/08 01:30:20 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/06/08 11:57:01 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ static int	execaux(t_command *instr, t_shell_data *data)
 	char	**path;
 
 	path = get_path(data->env);
-	
 	if (!path)
 	{
 		if (access(instr->argv[0], X_OK) == 0)
@@ -65,7 +64,6 @@ static int	execaux(t_command *instr, t_shell_data *data)
 		}
 		return (127);
 	}
-	
 	comand_and_path = check_access(instr->argv[0], path);
 	free_path(path);
 	if (comand_and_path != 0)
@@ -116,22 +114,22 @@ static int	execute_generic(t_command *instr, t_shell_data *data)
  */
 int	execute(t_list *instr, t_shell_data *data)
 {
-    int			status;
-    t_command	*command;
+	int			status;
+	t_command	*command;
 
-    command = (t_command *) instr->content;
-    if (!command->argv || !command->argv[0])
-        return (0);
-    if (command->fd_in > 0)
-        dup2(command->fd_in, STDIN_FILENO);
-    if (command->fd_out > 0)
-        dup2(command->fd_out, STDOUT_FILENO);
-    close_pipes(data, instr);
-    if (is_builtin(command->argv[0]))
-        status = execute_builtins(command, data);
-    else
-        status = execute_generic(command, data);
-    if (command->fd_out > 0)
+	command = (t_command *)instr->content;
+	if (!command->argv || !command->argv[0])
+		return (0);
+	if (command->fd_in > 0)
+		dup2(command->fd_in, STDIN_FILENO);
+	if (command->fd_out > 0)
+		dup2(command->fd_out, STDOUT_FILENO);
+	close_pipes(data, instr);
+	if (is_builtin(command->argv[0]))
+		status = execute_builtins(command, data);
+	else
+		status = execute_generic(command, data);
+	if (command->fd_out > 0)
 		close(command->fd_out);
 	if (instr->next)
 		close(((t_command *)instr->next->content)->fd_in);

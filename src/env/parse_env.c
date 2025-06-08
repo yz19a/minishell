@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 15:44:30 by yaperalt          #+#    #+#             */
-/*   Updated: 2025/06/08 01:28:16 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/06/08 11:52:50 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	**get_path(char **env)
 		{
 			free_args(arg);
 			env++;
-			continue;
+			continue ;
 		}
 		if (ft_strncmp(arg[0], "PATH", 4) == 0)
 		{
