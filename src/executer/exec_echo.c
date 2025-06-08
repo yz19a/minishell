@@ -6,53 +6,11 @@
 /*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 16:36:36 by yaperalt          #+#    #+#             */
-/*   Updated: 2025/05/26 14:01:18 by yaperalt         ###   ########.fr       */
+/*   Updated: 2025/06/08 15:10:23 by yaperalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-/**
- * Prints the contents of the provided array of strings, which is typically
- * used to display command arguments. Each string is printed in sequence,
- * separated by a space, but no newline is printed at the end.
- *
- * @param aux The array of strings to print.
- */
-static void	printmatrix(char **aux)
-{
-	int	i;
-
-	i = 1;
-	while (aux[i])
-	{
-		ft_printf("%s", aux[i]);
-		if (aux[i + 1])
-			ft_printf(" ");
-		i++;
-	}
-}
-
-/**
- * Prints all arguments except the first one, which is usually the command name.
- * This function prints each argument followed by a space, but does not print
- * a newline at the end.
- *
- * @param aux The array of strings containing the arguments.
- */
-static void	printmatrix_n(char **aux)
-{
-	int	i;
-
-	i = 2;
-	while (aux[i])
-	{
-		ft_printf("%s", aux[i]);
-		if (aux[i + 1])
-			ft_printf(" ");
-		i++;
-	}
-}
 
 /**
  * Checks if the first argument is "-n" and returns 1 if true, 0 otherwise.
@@ -94,19 +52,24 @@ static int	has_n(char *text)
  */
 int	built_in_echo(t_command *command)
 {
-	char	**aux;
+	int		i;
+	int		n_flag;
 
-	aux = command->argv;
-	if (command->argc == 1)
-		ft_printf("\n");
-	else if (command->argc == 2 && (has_n(command->argv[1]) == 1))
-		;
-	else if (command->argc >= 2 && (has_n(command->argv[1]) == 0))
+	i = 1;
+	n_flag = 0;
+	while (i < command->argc && has_n(command->argv[i]))
 	{
-		printmatrix(aux);
-		ft_printf("\n");
+		n_flag = 1;
+		i++;
 	}
-	else
-		printmatrix_n(aux);
+	while (i < command->argc)
+	{
+		ft_printf("%s", command->argv[i]);
+		if (i + 1 < command->argc)
+			ft_printf(" ");
+		i++;
+	}
+	if (!n_flag)
+		ft_printf("\n");
 	return (0);
 }
