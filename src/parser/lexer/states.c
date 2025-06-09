@@ -54,7 +54,7 @@ void	lex_word_state(char **line, t_lex_st *st, t_list **res)
 	}
 	else if (**line == '<')
 		ft_lstadd_back(res, lex_create_token(TOK_REDIR_IN, 0));
-	else if (!ft_strchr(" '\"", **line))
+	else if (!ft_isspace(**line) && !ft_strchr("'\"", **line))
 		append_last_token(res, line);
 	(*line)++;
 }
@@ -77,7 +77,7 @@ void	lex_start_state(char **line, t_lex_st *state, t_list **res)
 		ft_lstadd_back(res, lex_create_token(TOK_HDOC, 0));
 	else if (**line == '<')
 		ft_lstadd_back(res, lex_create_token(TOK_REDIR_IN, 0));
-	else if (**line == ' ')
+	else if (ft_isspace(**line))
 		;
 	else
 		ft_lstadd_back(res, lex_create_token(TOK_WORD,
