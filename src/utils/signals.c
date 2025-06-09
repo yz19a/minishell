@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 22:34:07 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/06/08 13:18:25 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/06/09 14:55:03 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ Muestra un nuevo prompt en una nueva línea usando funciones de Readline
 void	signal_reset_prompt(int signal)
 {
 	(void)signal;
+	g_exit_status = 130;
 	write(1, "\n", 1);
 	rl_on_new_line();
 	rl_replace_line("", 0);
