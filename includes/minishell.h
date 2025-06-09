@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:07:21 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/06/09 18:03:07 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/06/09 18:18:17 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ int				decode_error(int err);
 int				is_builtin(char *command);
 int				execute_builtins(t_command *command, t_shell_data *data,
 					int pipe);
+int				is_only_whitespace(char *str);
 
 /* executer/exec_cd.c */
 int				built_in_cd(t_command *command, t_shell_data *data);

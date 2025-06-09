@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:13:50 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/06/08 15:41:31 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/06/09 18:20:12 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ void	shell_loop(t_shell_data *data)
 	{
 		set_signals_interactive();
 		line = get_nextline();
-		add_history(line);
+		if (line && *line && !is_only_whitespace(line))
+			add_history(line);
 		set_signals_noninteractive();
 		data->commands = analyze_line(&line, data);
 		free(line);
