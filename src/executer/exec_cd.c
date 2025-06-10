@@ -6,11 +6,12 @@
 /*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 16:36:27 by yaperalt          #+#    #+#             */
-/*   Updated: 2025/06/10 17:12:05 by yaperalt         ###   ########.fr       */
+/*   Updated: 2025/06/10 19:56:52 by yaperalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "libft.h" // Make sure this is included for ft_strlcpy/ft_strlcat
 
 /**
  * Function to update the PWD and OLDPWD environment variables
@@ -100,9 +101,9 @@ int	built_in_cd(t_command *command, t_shell_data *data)
 	char	*dest_path;
 
 	status = 1;
+	dest_path = NULL;
 	if (command->argc == 1 || (command->argc == 2
-			&& (ft_strncmp(command->argv[1], "--", 3) == 0
-				|| ft_strncmp(command->argv[1], "~", 2) == 0)))
+			&& (ft_strncmp(command->argv[1], "--", 3) == 0)))
 	{
 		dest_path = get_env_value(data, "HOME");
 		status = exec_cd(dest_path, data);
@@ -117,7 +118,7 @@ int	built_in_cd(t_command *command, t_shell_data *data)
 		free(dest_path);
 	}
 	else if (command->argc == 2)
-		status = exec_cd(command->argv[1], data);
+		auxiliar2(command, data, &status, dest_path);
 	if (status == 1 || command->argc > 2)
 		return (auxiliar(command->argv[1], command->argc));
 	return (status);

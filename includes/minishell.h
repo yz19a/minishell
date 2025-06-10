@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:07:21 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/06/10 18:57:40 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/06/10 19:49:57 by yaperalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,9 @@ int				is_only_whitespace(char *str);
 int				built_in_cd(t_command *command, t_shell_data *data);
 int				cd_to_oldpwd(t_shell_data *data);
 int				exec_cd(char *destination_dir, t_shell_data *data);
+char			*expand_home(char *arg, t_shell_data *data);
+void			auxiliar2(t_command *command, t_shell_data *data, int *status,
+					char *dest_path);
 
 /* executer/exec_echo.c */
 int				built_in_echo(t_command *command);
