@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 22:34:07 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/06/09 18:09:18 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/06/10 18:57:07 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ignore_sigquit(void)
 	struct sigaction	act;
 
 	ft_memset(&act, 0, sizeof(act));
-	act.sa_handler = &signal_sigquit;
+	act.sa_handler = SIG_IGN;
 	sigaction(SIGQUIT, &act, NULL);
 }
 

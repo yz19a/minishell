@@ -6,20 +6,11 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 17:30:38 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/06/09 18:10:31 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/06/10 18:57:19 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-/*
-Updates the code of the last executed command when SIGQUIT sent
-*/
-void	signal_sigquit(int signal)
-{
-	(void)signal;
-	g_exit_status = 131;
-}
 
 /*
 Handler para SIGINT en modo no interactivo - muestra ^C y nueva línea

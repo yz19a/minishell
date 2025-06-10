@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:07:21 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/06/10 17:21:23 by yaperalt         ###   ########.fr       */
+/*   Updated: 2025/06/10 18:57:40 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ int				init_export_env(t_shell_data *aux, char **env);
 
 /* utils/signals.c */
 void			set_signals_interactive(void);
-void			ignore_sigquit(void);
 void			signal_reset_prompt(int signal);
 void			signal_sigquit(int signal);
 void			signal_noninteractive_sigint(int signal);
