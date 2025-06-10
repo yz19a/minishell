@@ -6,7 +6,7 @@
 /*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 16:36:27 by yaperalt          #+#    #+#             */
-/*   Updated: 2025/05/30 14:09:55 by yaperalt         ###   ########.fr       */
+/*   Updated: 2025/06/10 17:12:05 by yaperalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,19 +46,19 @@ static void	update_pwds(t_shell_data *data, char *new)
  * @param data Pointer to the shell data structure containing env vars
  * @return int Returns 0 on success, or 1 on failure
  */
-static int	exec_cd(char *destination_dir, t_shell_data *data)
+int	exec_cd(char *destination_dir, t_shell_data *data)
 {
 	int		status;
-	char	*new_path;
+	char	*newpwd;
 
 	status = 0;
 	if (chdir(destination_dir) == -1)
 		status = 1;
-	if (destination_dir == 0)
+	else
 	{
-		new_path = getcwd(NULL, 0);
-		update_pwds(data, new_path);
-		free(new_path);
+		newpwd = getcwd(NULL, 0);
+		update_pwds(data, newpwd);
+		free(newpwd);
 	}
 	return (status);
 }
@@ -100,15 +100,16 @@ int	built_in_cd(t_command *command, t_shell_data *data)
 	char	*dest_path;
 
 	status = 1;
-	if (command->argc == 1
-		|| (ft_strncmp(command->argv[1], "--", 3) == 0 && command->argc == 2))
+	if (command->argc == 1 || (command->argc == 2
+			&& (ft_strncmp(command->argv[1], "--", 3) == 0
+				|| ft_strncmp(command->argv[1], "~", 2) == 0)))
 	{
 		dest_path = get_env_value(data, "HOME");
 		status = exec_cd(dest_path, data);
 		free(dest_path);
 	}
-	else if (command->argc == 2 && ft_strncmp(command->argv[1], "..", 3) == 0)
-		status = exec_cd(command->argv[1], data);
+	else if (command->argc == 2 && ft_strncmp(command->argv[1], "-", 2) == 0)
+		status = cd_to_oldpwd(data);
 	else if (command->argc == 2 && ft_strncmp(command->argv[1], ".", 2) == 0)
 	{
 		dest_path = get_env_value(data, "PWD");
