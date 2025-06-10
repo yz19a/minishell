@@ -6,7 +6,7 @@
 #    By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/09 15:15:38 by yaperalt          #+#    #+#              #
-#    Updated: 2025/06/10 17:20:39 by yaperalt         ###   ########.fr        #
+#    Updated: 2025/06/10 17:23:30 by yaperalt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ RESET = \033[0m
 # Variables
 NAME	= minishell
 CC = cc
-CFLAGS	= -Wall -Wextra -Werror -g
+CFLAGS	= -Wall -Wextra -Werror
 
 LIBFT	= libft
 LIBS = $(LIBFT)/libft.a
