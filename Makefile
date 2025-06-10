@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+         #
+#    By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/09 15:15:38 by yaperalt          #+#    #+#              #
-#    Updated: 2025/06/09 17:33:15 by jalcausa         ###   ########.fr        #
+#    Updated: 2025/06/10 17:20:39 by yaperalt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,8 @@ SRCS	= 	src/main.c							\
             src/executer/exec_export.c			\
             src/executer/exec_pwd.c				\
             src/executer/exec_unset.c			\
-            src/executer/executer_utils.c
+            src/executer/executer_utils.c		\
+			src/executer/exec_cd2.c
 
 OBJS	= $(SRCS:.c=.o)
 
