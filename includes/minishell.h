@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:07:21 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/06/09 18:18:17 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/06/10 17:21:23 by yaperalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,8 @@ int				is_only_whitespace(char *str);
 
 /* executer/exec_cd.c */
 int				built_in_cd(t_command *command, t_shell_data *data);
+int				cd_to_oldpwd(t_shell_data *data);
+int				exec_cd(char *destination_dir, t_shell_data *data);
 
 /* executer/exec_echo.c */
 int				built_in_echo(t_command *command);

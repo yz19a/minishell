@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+         #
+#    By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/09 15:15:38 by yaperalt          #+#    #+#              #
-#    Updated: 2025/06/09 17:33:15 by jalcausa         ###   ########.fr        #
+#    Updated: 2025/06/10 17:23:30 by yaperalt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ RESET = \033[0m
 # Variables
 NAME	= minishell
 CC = cc
-CFLAGS	= -Wall -Wextra -Werror -g
+CFLAGS	= -Wall -Wextra -Werror
 
 LIBFT	= libft
 LIBS = $(LIBFT)/libft.a
@@ -74,7 +74,8 @@ SRCS	= 	src/main.c							\
             src/executer/exec_export.c			\
             src/executer/exec_pwd.c				\
             src/executer/exec_unset.c			\
-            src/executer/executer_utils.c
+            src/executer/executer_utils.c		\
+			src/executer/exec_cd2.c
 
 OBJS	= $(SRCS:.c=.o)
 
