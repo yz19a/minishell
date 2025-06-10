@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:07:21 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/06/08 15:46:15 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/06/09 18:18:17 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include <signal.h>
 # include <stdlib.h>
 # include <sys/wait.h>
+# include <termios.h>
 
 /* Structures */
 
@@ -64,8 +65,13 @@ int				init_export_env(t_shell_data *aux, char **env);
 void			set_signals_interactive(void);
 void			ignore_sigquit(void);
 void			signal_reset_prompt(int signal);
+void			signal_sigquit(int signal);
+void			signal_noninteractive_sigint(int signal);
+void			signal_noninteractive_sigquit(int signal);
 void			print_newline(int signal);
 void			set_signals_noninteractive(void);
+void			disable_control_echo(void);
+void			enable_control_echo(void);
 
 /* utils/free.c */
 void			free_ptr(void *ptr);
@@ -111,6 +117,7 @@ int				decode_error(int err);
 int				is_builtin(char *command);
 int				execute_builtins(t_command *command, t_shell_data *data,
 					int pipe);
+int				is_only_whitespace(char *str);
 
 /* executer/exec_cd.c */
 int				built_in_cd(t_command *command, t_shell_data *data);

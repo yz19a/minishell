@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+         #
+#    By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/09 15:15:38 by yaperalt          #+#    #+#              #
-#    Updated: 2025/06/07 21:49:13 by yaperalt         ###   ########.fr        #
+#    Updated: 2025/06/09 17:33:15 by jalcausa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ SRCS	= 	src/main.c							\
             src/shell_loop.c					\
             src/utils/init.c					\
             src/utils/signals.c					\
+			src/utils/signals2.c				\
             src/utils/exit.c					\
             src/utils/free.c					\
             src/utils/expand_variables.c		\

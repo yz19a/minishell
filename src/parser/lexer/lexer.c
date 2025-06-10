@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 11:30:39 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/06/09 14:36:54 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/06/09 18:10:58 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,21 @@
 // estado inicial de nuevo
 t_lex_st	lex_next_state(t_lex_st state, char cur_char)
 {
-    if ((state == LEX_SIMPLE_QUOTE && cur_char == '\'')
-        || (state == LEX_DOUBLE_QUOTE && cur_char == '"')
-        || (state == LEX_START && !ft_strchr("<'|\"", cur_char) && !ft_isspace(cur_char)))
-        return (LEX_WORD);
-    else if ((state == LEX_START && cur_char == '\'')
-        || (state == LEX_WORD && cur_char == '\''))
-        return (LEX_SIMPLE_QUOTE);
-    else if ((state == LEX_START && cur_char == '"')
-        || (state == LEX_WORD && cur_char == '"'))
-        return (LEX_DOUBLE_QUOTE);
-    else if ((state == LEX_WORD && (ft_strchr("<|>", cur_char) || ft_isspace(cur_char))))
-        return (LEX_START);
-    return (state);
+	if ((state == LEX_SIMPLE_QUOTE && cur_char == '\'')
+		|| (state == LEX_DOUBLE_QUOTE && cur_char == '"')
+		|| (state == LEX_START && !ft_strchr("<'|\"", cur_char)
+			&& !ft_isspace(cur_char)))
+		return (LEX_WORD);
+	else if ((state == LEX_START && cur_char == '\'')
+		|| (state == LEX_WORD && cur_char == '\''))
+		return (LEX_SIMPLE_QUOTE);
+	else if ((state == LEX_START && cur_char == '"')
+		|| (state == LEX_WORD && cur_char == '"'))
+		return (LEX_DOUBLE_QUOTE);
+	else if ((state == LEX_WORD && (ft_strchr("<|>", cur_char)
+				|| ft_isspace(cur_char))))
+		return (LEX_START);
+	return (state);
 }
 
 // Si se quedan sin cerrar comillas devolver error

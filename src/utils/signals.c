@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 22:34:07 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/06/09 14:55:03 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/06/09 18:09:18 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ignore_sigquit(void)
 	struct sigaction	act;
 
 	ft_memset(&act, 0, sizeof(act));
-	act.sa_handler = SIG_IGN;
+	act.sa_handler = &signal_sigquit;
 	sigaction(SIGQUIT, &act, NULL);
 }
 
@@ -46,6 +46,7 @@ void	set_signals_interactive(void)
 {
 	struct sigaction	act;
 
+	disable_control_echo();
 	ignore_sigquit();
 	ft_memset(&act, 0, sizeof(act));
 	act.sa_handler = &signal_reset_prompt;
@@ -66,10 +67,14 @@ mostrar una nueva línea únicamente
 */
 void	set_signals_noninteractive(void)
 {
-	struct sigaction	act;
+	struct sigaction	act_int;
+	struct sigaction	act_quit;
 
-	ft_memset(&act, 0, sizeof(act));
-	act.sa_handler = SIG_IGN;
-	sigaction(SIGINT, &act, NULL);
-	sigaction(SIGQUIT, &act, NULL);
+	disable_control_echo();
+	ft_memset(&act_int, 0, sizeof(act_int));
+	act_int.sa_handler = &signal_noninteractive_sigint;
+	sigaction(SIGINT, &act_int, NULL);
+	ft_memset(&act_quit, 0, sizeof(act_quit));
+	act_quit.sa_handler = &signal_noninteractive_sigquit;
+	sigaction(SIGQUIT, &act_quit, NULL);
 }
