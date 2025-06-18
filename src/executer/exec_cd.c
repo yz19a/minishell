@@ -6,7 +6,7 @@
 /*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 16:36:27 by yaperalt          #+#    #+#             */
-/*   Updated: 2025/06/10 19:56:52 by yaperalt         ###   ########.fr       */
+/*   Updated: 2025/06/18 10:02:54 by yaperalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,11 @@ int	exec_cd(char *destination_dir, t_shell_data *data)
 	else
 	{
 		newpwd = getcwd(NULL, 0);
+		if (!newpwd)
+		{
+			status = 1;
+			return (status);
+		}
 		update_pwds(data, newpwd);
 		free(newpwd);
 	}
